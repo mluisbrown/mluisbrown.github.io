@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Michael Brown</title>
+    <link>http://mluisbrown.github.io/tags/blog/</link>
+    <description>Recent content in Blog on Michael Brown</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2016</copyright>
+    <lastBuildDate>Thu, 25 Feb 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://mluisbrown.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Starting Over</title>
+      <link>http://mluisbrown.github.io/starting-over/</link>
+      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://mluisbrown.github.io/starting-over/</guid>
+      <description>&lt;p&gt;My old tumblr blog was a mess. I was doing a very bad impression of being an Apple blogger, interspersed with the odd post about iOS development. The posts were too long and too infrequent. It was actually starting to be an embarrassment.&lt;/p&gt;
+
+&lt;p&gt;So I killed it. All the old posts are gone.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m starting over, with a new blog using the &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static blogging engine and hosting everything on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt;. The source for the blog can be found at &lt;a href=&#34;https://github.com/mluisbrown/michael-brown.net-hugo&#34;&gt;here&lt;/a&gt; on GitHub.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m setting myself a target of at least one post per week, even if it&amp;rsquo;s only a one-liner with a link. Here we go!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
