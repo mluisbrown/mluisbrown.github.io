@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Michael Brown</title>
-    <link>http://michael-brown.net/post/</link>
-    <description>Recent content in Posts on Michael Brown</description>
+    <title>Security on Michael Brown</title>
+    <link>http://michael-brown.net/tags/security/</link>
+    <description>Recent content in Security on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
     <lastBuildDate>Tue, 01 Mar 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://michael-brown.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://michael-brown.net/tags/security/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Apple vs the FBI</title>
@@ -20,22 +20,6 @@
 &lt;p&gt;I am clearly on Apple&amp;rsquo;s side in this battle, and very much hope that they don&amp;rsquo;t lose. However, it&amp;rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&amp;rsquo;t be a total disaster. All anyone would need to do to keep their iPhone secure would be use a longer numeric passcode or, even better, an alpha numeric passcode. A 10 digit passcode would take several years to brute force, rather than several hours for a 6 digit one. A 10 character alpha numeric passcode would take thousands of years to crack.&lt;/p&gt;
 
 &lt;p&gt;So, any clued up user (criminal or otherwise) who wants to keep their iPhone secure against GovtOS just needs to use a longer passcode to make it impossible to crack in a useful time period. With Touch ID, the inconvenience of a long passcode is hugely reduced, so I would strongly recommend it.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Starting Over</title>
-      <link>http://michael-brown.net/2016/starting-over/</link>
-      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://michael-brown.net/2016/starting-over/</guid>
-      <description>&lt;p&gt;My old tumblr blog was a mess. I was doing a very bad impression of being an Apple blogger, interspersed with the odd post about iOS development. The posts were too long and too infrequent. It was actually starting to be an embarrassment.&lt;/p&gt;
-
-&lt;p&gt;So I killed it. All the old posts are gone.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m starting over, with a new blog using the &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static blogging engine and hosting everything on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt;. The source for the blog can be found at &lt;a href=&#34;https://github.com/mluisbrown/michael-brown.net-hugo&#34;&gt;here&lt;/a&gt; on GitHub.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m setting myself a target of at least one post per week, even if it&amp;rsquo;s only a one-liner with a link. Here we go!&lt;/p&gt;
 </description>
     </item>
     
