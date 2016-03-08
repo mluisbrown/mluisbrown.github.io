@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Michael Brown</title>
-    <link>http://michael-brown.net/post/</link>
-    <description>Recent content in Posts on Michael Brown</description>
+    <title>Swift on Michael Brown</title>
+    <link>http://michael-brown.net/tags/swift/</link>
+    <description>Recent content in Swift on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
     <lastBuildDate>Tue, 08 Mar 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://michael-brown.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://michael-brown.net/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Using stride to convert C-style for loops to Swift 2.2</title>
@@ -87,36 +87,6 @@ pages.indices.last?.stride(to: lastPage, by: -1).forEach(purgePage)
 &lt;p&gt;Now that&amp;rsquo;s looking really elegant. I&amp;rsquo;m tempted to use &lt;code&gt;stride(to:by:).forEach(_:)&lt;/code&gt; to replace all my C style for loops in Swift.  There is a caveat though: you cannot break out of or continue a &lt;code&gt;forEach&lt;/code&gt; iteration with &lt;code&gt;break&lt;/code&gt; or &lt;code&gt;continue&lt;/code&gt;. For those cases just use a &lt;code&gt;stride(to:by:)&lt;/code&gt; sequence with &lt;code&gt;for index in&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Thanks to &lt;a href=&#34;https://twitter.com/NSRenato&#34;&gt;@NSRenato&lt;/a&gt; for the tip on using &lt;code&gt;stride&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Apple vs the FBI</title>
-      <link>http://michael-brown.net/2016/apple-vs-the-fbi/</link>
-      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://michael-brown.net/2016/apple-vs-the-fbi/</guid>
-      <description>&lt;p&gt;The details of this case have been broken down and explained extremely well by &lt;a href=&#34;https://stratechery.com/2016/apple-the-fbi-and-security/&#34;&gt;Ben Thompson&lt;/a&gt;. The more technical details have also been very thoroughly covered by &lt;a href=&#34;http://www.zdziarski.com/blog/&#34;&gt;Jonathan Zdziarski&lt;/a&gt; on his blog.&lt;/p&gt;
-
-&lt;p&gt;I am clearly on Apple&amp;rsquo;s side in this battle, and very much hope that they don&amp;rsquo;t lose. However, it&amp;rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&amp;rsquo;t be a total disaster. All anyone would need to do to keep their iPhone secure would be use a longer numeric passcode or, even better, an alpha numeric passcode. A 10 digit passcode would take several years to brute force, rather than several hours for a 6 digit one. A 10 character alpha numeric passcode would take thousands of years to crack.&lt;/p&gt;
-
-&lt;p&gt;So, any clued up user (criminal or otherwise) who wants to keep their iPhone secure against GovtOS just needs to use a longer passcode to make it impossible to crack in a useful time period. With Touch ID, the inconvenience of a long passcode is hugely reduced, so I would strongly recommend it.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Starting Over</title>
-      <link>http://michael-brown.net/2016/starting-over/</link>
-      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://michael-brown.net/2016/starting-over/</guid>
-      <description>&lt;p&gt;My old tumblr blog was a mess. I was doing a very bad impression of being an Apple blogger, interspersed with the odd post about iOS development. The posts were too long and too infrequent. It was actually starting to be an embarrassment.&lt;/p&gt;
-
-&lt;p&gt;So I killed it. All the old posts are gone.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m starting over, with a new blog using the &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static blogging engine and hosting everything on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt;. The source for the blog can be found at &lt;a href=&#34;https://github.com/mluisbrown/michael-brown.net-hugo&#34;&gt;here&lt;/a&gt; on GitHub.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m setting myself a target of at least one post per week, even if it&amp;rsquo;s only a one-liner with a link. Here we go!&lt;/p&gt;
 </description>
     </item>
     

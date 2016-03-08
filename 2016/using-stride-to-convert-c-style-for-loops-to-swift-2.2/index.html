@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" Using stride to convert C-style for loops to Swift 2.2 &middot;  Michael Brown" />
+  	<meta property="og:site_name" content="Michael Brown" />
+  	<meta property="og:url" content="http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-03-08T00:00:00Z" />
+
+    
+    <meta property="og:article:tag" content="swift" />
+    
+    <meta property="og:article:tag" content="dev" />
+    
+    
+
+  <title>
+     Using stride to convert C-style for loops to Swift 2.2 &middot;  Michael Brown
+  </title>
+
+    <meta name="description" content="the only way to do great work is to love what you do" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://michael-brown.net/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://michael-brown.net/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="http://michael-brown.net/index.xml" rel="alternate" type="application/rss+xml" title="Michael Brown" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.15" />
+
+    <link rel="canonical" href="http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41132207-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/about/">About me</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/apps/">Apps</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="http://michael-brown.net/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://michael-brown.net/"><img src="http://michael-brown.net/images/head.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Using stride to convert C-style for loops to Swift 2.2</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-03-08T00:00:00Z">
+            Mar 8, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/swift/">#swift</a></span>
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/dev/">#dev</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0007-remove-c-style-for-loops.md">deprecated</a>. The default Xcode fix-it for converting them uses a Range:</p>
+
+<pre><code class="language-swift">let count = 5
+for var index = 0; index &lt; count; index++ {
+    doSomething(index)
+}
+</code></pre>
+
+<p>is converted do:</p>
+
+<pre><code class="language-swift">let count = 5
+for index in 0 ..&lt; count {
+    doSomething(index)
+}
+</code></pre>
+
+<p>For the vast majority of C-style for loops this will work perfectly well. But there are cases where using a Range not only won&rsquo;t work as expected but will actually crash!</p>
+
+<p>Consider the case where <code>count</code> in the above example is -1 (we&rsquo;ll get to why you might do that in a second). The C style loop would finish immediately as <code>index</code> is already greater than <code>count</code> on entry. However, the conversion using a Range would crash with:  <code>fatal error: Can't form Range with end &lt; start</code>.</p>
+
+<p>So, why on earth might you want have a loop range with an end less than the start? In my app <a href="http://memories.land">Memories</a> (code available on <a href="https://github.com/mluisbrown/Memories">GitHub</a>) I have a View Controller which is an image viewer where you can swipe left and right to navigate a set of images. In order to save memory, I only want to have the current visible image and the ones immediately to the left and to the right of it loaded in memory. As the user swipes through the images, all other images are purged from memory.</p>
+
+<p>To purge all the images to the left of the visible image I had a loop that looked like this:</p>
+
+<pre><code class="language-swift">let page = visiblePage
+let firstPage = page - 1
+let lastPage = page + 1
+
+// Purge anything before the first page
+for var index = 0; index &lt; firstPage; ++index {
+    purgePage(index)
+}
+</code></pre>
+
+<p>If the currently visible image is the first one (<code>page == 0</code>), then <code>firstPage</code> will be -1. In the Range version of the loop:</p>
+
+<pre><code class="language-swift">for index in 0 ..&lt; firstPage {
+    purgePage(index)
+}
+</code></pre>
+
+<p>we end up with a Range where the end is less than the start. Boom. Ok, this only happens in the edge case where we are on the first page (and the last page, in a similar case where the start is greater than the end). We could wrap the loop in an <code>if</code> that only executes the loop when <code>page &gt; 0</code>. But I really hate writing special logic for edge cases if I can possibly avoid it. It&rsquo;s so much cleaner if your logic handles edge cases by default. So what&rsquo;s the solution? The Swift <a href="http://swiftdoc.org/v2.1/protocol/Strideable"><code>Strideable</code></a> Protocol, particularly the <a href="http://swiftdoc.org/v2.1/protocol/Strideable/#func--stride-to_by_"><code>stride(to:by:)</code></a> method. As the docs state:</p>
+
+<blockquote>
+<p>Return the sequence of values (self, self + stride, self + stride + stride, &hellip; last) where last is the last value in the progression that is less than end.</p>
+</blockquote>
+
+<p>So, for example: <code>0.stride(to: 5, by: 1)</code> returns the sequence (0, 1, 2, 3, 4). Importantly, it doesn&rsquo;t matter if the the value passed in the <code>to:</code> parameter is less than the <code>self</code> (the start value) so, for example: <code>0.stride(to: -1, by: 1)</code> returns an empty sequence. So now we can just replace the Range with the sequence returned from <code>stride(to:by:)</code>:</p>
+
+<pre><code class="language-swift">for index in 0.stride(to: firstPage, by: 1) {
+    purgePage(index)
+}
+</code></pre>
+
+<p>the loop to purge the pages <em>after</em> the current one is similar, using a reverse sequence (<code>pages</code> here is the array of pages):</p>
+
+<pre><code class="language-swift">for index in pages.indices.last?.stride(to: lastPage, by: -1) {
+    purgePage(index)
+}
+</code></pre>
+
+<p>Now that&rsquo;s a lot nicer. No special logic for edge cases!</p>
+
+<p>We can still improve on this though and make these loops more &lsquo;functional&rsquo; and perhaps more idiomatic Swift using <a href="http://swiftdoc.org/v2.1/protocol/SequenceType/#func-foreach_"><code>forEach(_:)</code></a>:</p>
+
+<pre><code class="language-swift">0.stride(to: firstPage, by: 1).forEach(purgePage)
+pages.indices.last?.stride(to: lastPage, by: -1).forEach(purgePage)
+</code></pre>
+
+<p>Now that&rsquo;s looking really elegant. I&rsquo;m tempted to use <code>stride(to:by:).forEach(_:)</code> to replace all my C style for loops in Swift.  There is a caveat though: you cannot break out of or continue a <code>forEach</code> iteration with <code>break</code> or <code>continue</code>. For those cases just use a <code>stride(to:by:)</code> sequence with <code>for index in</code>.</p>
+
+<p>Thanks to <a href="https://twitter.com/NSRenato">@NSRenato</a> for the tip on using <code>stride</code>.</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://michael-brown.net/" style="background-image: url(http://michael-brown.net/images/head.png)"><span class="hidden">'s Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://michael-brown.net/"></a></h4>
+  
+  <p>Read <a href="http://michael-brown.net/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    
+    
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Using%20stride%20to%20convert%20C-style%20for%20loops%20to%20Swift%202.2&amp;url=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-stride-to-convert-c-style-for-loops-to-swift-2.2%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-stride-to-convert-c-style-for-loops-to-swift-2.2%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Michael Brown</a> Copyright © 2016</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/index.js"></script>
+    
+</body>
+</html>
+

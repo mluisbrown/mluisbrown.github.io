@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://michael-brown.net/</loc>
-    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2016-03-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</loc>
+    <lastmod>2016-03-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
