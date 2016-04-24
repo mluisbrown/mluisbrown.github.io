@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" Comparing Dates, whilst ignoring the time &middot;  Michael Brown" />
+  	<meta property="og:site_name" content="Michael Brown" />
+  	<meta property="og:url" content="http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-04-24T00:00:00Z" />
+
+    
+    <meta property="og:article:tag" content="swift" />
+    
+    <meta property="og:article:tag" content="dev" />
+    
+    
+
+  <title>
+     Comparing Dates, whilst ignoring the time &middot;  Michael Brown
+  </title>
+
+    <meta name="description" content="the only way to do great work is to love what you do" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://michael-brown.net/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://michael-brown.net/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="http://michael-brown.net/index.xml" rel="alternate" type="application/rss+xml" title="Michael Brown" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.15" />
+
+    <link rel="canonical" href="http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41132207-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/about/">About me</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/apps/">Apps</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="http://michael-brown.net/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://michael-brown.net/"><img src="http://michael-brown.net/images/head.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Comparing Dates, whilst ignoring the time</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-04-24T00:00:00Z">
+            Apr 24, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/swift/">#swift</a></span>
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/dev/">#dev</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>Comparing dates is one of the most common things you have to do as a developer of almost any type of software. At first glance it would seem to be something almost trivially easy. What could possibly go wrong? Well, turns out, quite a lot!</p>
+
+<p>I&rsquo;m going to highlight just one issue that recently caused an embarassing bug in my app <a href="http://memories.land">Memories</a>. It involved just a simple date comparison, ignoring time, and without crossing timezones.</p>
+
+<p>I had an array of <code>NSDate</code> and I wanted to get the index of the date in the array closest to the current date. The code was something like this:</p>
+
+<script src="https://gist.github.com/mluisbrown/8808c70899ed278e5e5e3ba06fee4320.js"></script>
+
+<p>The dates in the array have their time components all set to zero as I don&rsquo;t care about the time, I just want to compare the date. To do the actual date comparison so that the time component is ignored, I&rsquo;m using the rather handy <code>NSCalendar</code> method <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSCalendar_Class/index.html#//apple_ref/occ/instm/NSCalendar/ordinalityOfUnit:inUnit:forDate:">ordinalityOfUnit:inUnit:forDate:</a>. If you call this method with <code>.Day</code> for the <code>smaller</code> parameter and <code>.Era</code> for the <code>.Larger</code> parameter it will give you a sort of Julian Day number<sup class="footnote-ref" id="fnref:422d6ebfb03115c00715b16ab4ca818b:julian"><a rel="footnote" href="#fn:422d6ebfb03115c00715b16ab4ca818b:julian">1</a></sup> that&rsquo;s easy to use for date arithmetic.</p>
+
+<p>Looking at the code above, you would expect that the closest index when calling <code>let closest = indexOfClosestDate(someDates, toDate: NSDate())</code> would be 1, since today is closest to, well, today. However, if you run the above code in an Xcode Playground somewhere in the GMT timezone whilst DST is in effect you will see that the result is 2. The <code>NSDate()</code> for today is comparing as having an ordinal day number matching tomorrow, not today. What the hell is going on?</p>
+
+<p>Well, the clue is in the phrase &ldquo;somewhere in the GMT timezone whilst DST is in effect&rdquo;. It&rsquo;s one reason I didn&rsquo;t spot this bug in my app until fairly recently as I had done all the development in the winter when DST is not in effect, and I live in Lisbon in Portugal which is in the GMT timezone.</p>
+
+<p>The following playground should make everything clear (note that the values shown in comments are values I obtained running in the GMT timezone with DST in effect late on April 24th 2016):</p>
+
+<script src="https://gist.github.com/mluisbrown/31146f28f3311e62345d5d4ef32be4ed.js"></script>
+
+<p>The ordinal day number for <code>today</code> is 736078. But the ordinal day number for <code>todayMidnight</code> is 736077. 1 day difference. But how is that possible, since they are the same day? Take a look at the <code>debugDescription</code> for each variable:</p>
+
+<ul>
+<li><code>today</code>: &ldquo;2016-04-24 21:16:39 +0000&rdquo;</li>
+<li><code>todayMidnight</code>: &ldquo;2016-04-23 23:00:00 +0000&rdquo;</li>
+</ul>
+
+<p>You see? <code>todayMidnight</code> is actually represented as the day <em>before</em> at 23:00, not today at midnight! The reason for this is that <code>NSDate</code> internally stores dates in <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a>, which is the same as GMT for most purposes. When DST is in effect, the time where I live is one hour ahead of GMT, so today at midnight, in GMT terms, is actually yesterday at 23:00.</p>
+
+<p>The solution I found for comparing dates where you don&rsquo;t care about the time component is to set the time component to midday (12:00) instead of midnight (00:00). That way, it would take a 12 hour offset due to DST or timezone changes to change the date in UTC terms.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:422d6ebfb03115c00715b16ab4ca818b:julian">Well, since I&rsquo;m using the Gregorian calendar, it would be a Gregorian Day Number, which is called a <a href="https://en.wikipedia.org/wiki/Rata_Die">Rata Die</a>
+ <a class="footnote-return" href="#fnref:422d6ebfb03115c00715b16ab4ca818b:julian"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://michael-brown.net/" style="background-image: url(http://michael-brown.net/images/head.png)"><span class="hidden">'s Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://michael-brown.net/"></a></h4>
+  
+  <p>Read <a href="http://michael-brown.net/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    
+    
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Comparing%20Dates%2c%20whilst%20ignoring%20the%20time&amp;url=http%3a%2f%2fmichael-brown.net%2f2016%2fcomparing-dates-whilst-ignoring-the-time%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fmichael-brown.net%2f2016%2fcomparing-dates-whilst-ignoring-the-time%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Michael Brown</a> Copyright © 2016</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/index.js"></script>
+    
+</body>
+</html>
+

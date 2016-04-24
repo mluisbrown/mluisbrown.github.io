@@ -6,8 +6,54 @@
     <description>Recent content in Dev on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Tue, 08 Mar 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 Apr 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://michael-brown.net/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Comparing Dates, whilst ignoring the time</title>
+      <link>http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</link>
+      <pubDate>Sun, 24 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</guid>
+      <description>&lt;p&gt;Comparing dates is one of the most common things you have to do as a developer of almost any type of software. At first glance it would seem to be something almost trivially easy. What could possibly go wrong? Well, turns out, quite a lot!&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to highlight just one issue that recently caused an embarassing bug in my app &lt;a href=&#34;http://memories.land&#34;&gt;Memories&lt;/a&gt;. It involved just a simple date comparison, ignoring time, and without crossing timezones.&lt;/p&gt;
+
+&lt;p&gt;I had an array of &lt;code&gt;NSDate&lt;/code&gt; and I wanted to get the index of the date in the array closest to the current date. The code was something like this:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/mluisbrown/8808c70899ed278e5e5e3ba06fee4320.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The dates in the array have their time components all set to zero as I don&amp;rsquo;t care about the time, I just want to compare the date. To do the actual date comparison so that the time component is ignored, I&amp;rsquo;m using the rather handy &lt;code&gt;NSCalendar&lt;/code&gt; method &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSCalendar_Class/index.html#//apple_ref/occ/instm/NSCalendar/ordinalityOfUnit:inUnit:forDate:&#34;&gt;ordinalityOfUnit:inUnit:forDate:&lt;/a&gt;. If you call this method with &lt;code&gt;.Day&lt;/code&gt; for the &lt;code&gt;smaller&lt;/code&gt; parameter and &lt;code&gt;.Era&lt;/code&gt; for the &lt;code&gt;.Larger&lt;/code&gt; parameter it will give you a sort of Julian Day number&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:422d6ebfb03115c00715b16ab4ca818b:julian&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:422d6ebfb03115c00715b16ab4ca818b:julian&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; that&amp;rsquo;s easy to use for date arithmetic.&lt;/p&gt;
+
+&lt;p&gt;Looking at the code above, you would expect that the closest index when calling &lt;code&gt;let closest = indexOfClosestDate(someDates, toDate: NSDate())&lt;/code&gt; would be 1, since today is closest to, well, today. However, if you run the above code in an Xcode Playground somewhere in the GMT timezone whilst DST is in effect you will see that the result is 2. The &lt;code&gt;NSDate()&lt;/code&gt; for today is comparing as having an ordinal day number matching tomorrow, not today. What the hell is going on?&lt;/p&gt;
+
+&lt;p&gt;Well, the clue is in the phrase &amp;ldquo;somewhere in the GMT timezone whilst DST is in effect&amp;rdquo;. It&amp;rsquo;s one reason I didn&amp;rsquo;t spot this bug in my app until fairly recently as I had done all the development in the winter when DST is not in effect, and I live in Lisbon in Portugal which is in the GMT timezone.&lt;/p&gt;
+
+&lt;p&gt;The following playground should make everything clear (note that the values shown in comments are values I obtained running in the GMT timezone with DST in effect late on April 24th 2016):&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/mluisbrown/31146f28f3311e62345d5d4ef32be4ed.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The ordinal day number for &lt;code&gt;today&lt;/code&gt; is 736078. But the ordinal day number for &lt;code&gt;todayMidnight&lt;/code&gt; is 736077. 1 day difference. But how is that possible, since they are the same day? Take a look at the &lt;code&gt;debugDescription&lt;/code&gt; for each variable:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;today&lt;/code&gt;: &amp;ldquo;2016-04-24 21:16:39 +0000&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;todayMidnight&lt;/code&gt;: &amp;ldquo;2016-04-23 23:00:00 +0000&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You see? &lt;code&gt;todayMidnight&lt;/code&gt; is actually represented as the day &lt;em&gt;before&lt;/em&gt; at 23:00, not today at midnight! The reason for this is that &lt;code&gt;NSDate&lt;/code&gt; internally stores dates in &lt;a href=&#34;https://en.wikipedia.org/wiki/Coordinated_Universal_Time&#34;&gt;UTC&lt;/a&gt;, which is the same as GMT for most purposes. When DST is in effect, the time where I live is one hour ahead of GMT, so today at midnight, in GMT terms, is actually yesterday at 23:00.&lt;/p&gt;
+
+&lt;p&gt;The solution I found for comparing dates where you don&amp;rsquo;t care about the time component is to set the time component to midday (12:00) instead of midnight (00:00). That way, it would take a 12 hour offset due to DST or timezone changes to change the date in UTC terms.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:422d6ebfb03115c00715b16ab4ca818b:julian&#34;&gt;Well, since I&amp;rsquo;m using the Gregorian calendar, it would be a Gregorian Day Number, which is called a &lt;a href=&#34;https://en.wikipedia.org/wiki/Rata_Die&#34;&gt;Rata Die&lt;/a&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:422d6ebfb03115c00715b16ab4ca818b:julian&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Using stride to convert C-style for loops to Swift 2.2</title>
