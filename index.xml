@@ -193,6 +193,9 @@ pages.indices.last?.stride(to: lastPage, by: -1).forEach(purgePage)
 &lt;p&gt;&lt;a href=&#34;http://interest.io/&#34;&gt;Interest : Loan Calculator&lt;/a&gt;
 &lt;a href=&#34;http://interest.io/&#34;&gt;&lt;img src=&#34;http://michael-brown.net/images/appicons/interest.png&#34; alt=&#34;Interest Icon&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;a href=&#34;https://itunes.apple.com/pt/app/farmacias-de-servico/id389764591?mt=8&amp;amp;amp;at=11l8Da&amp;amp;amp;ct=blog&#34;&gt;Farmácias de Serviço&lt;/a&gt;
+&lt;a href=&#34;https://itunes.apple.com/pt/app/farmacias-de-servico/id389764591?mt=8&amp;amp;amp;at=11l8Da&amp;amp;amp;ct=blog&#34;&gt;&lt;img src=&#34;http://michael-brown.net/images/appicons/farmacias.png&#34; alt=&#34;Farmácias Icon&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;For questions or support about these apps you can e-mail me at this domain.&lt;/p&gt;
 </description>
     </item>
