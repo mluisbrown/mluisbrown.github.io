@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+
+
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Using PHLivePhotoView with Auto Layout"/>
+<meta name="twitter:description" content="So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for PHLivePhotoView and thought that this would be fairly straightforward. For Live Photos, I&rsquo;ll just use a PHLivePhotoView instead of a UIImageView.
+Well, as is usually the case when a developer says: &ldquo;this looks straightforward, I&rsquo;ll have it done in a couple of hours&rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong."/>
+
+
+
+  	<meta property="og:title" content=" Using PHLivePhotoView with Auto Layout &middot;  Michael Brown" />
+  	<meta property="og:site_name" content="Michael Brown" />
+  	<meta property="og:url" content="http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-11-03T00:00:00Z" />
+
+    
+    <meta property="og:article:tag" content="swift" />
+    
+    <meta property="og:article:tag" content="dev" />
+    
+    <meta property="og:article:tag" content="autolayout" />
+    
+    
+
+    <title>
+       Using PHLivePhotoView with Auto Layout &middot;  Michael Brown
+    </title>
+
+    <meta name="description" content="the only way to do great work is to love what you do" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://michael-brown.net/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://michael-brown.net/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="http://michael-brown.net/index.xml" rel="alternate" type="application/rss+xml" title="Michael Brown" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.17" />
+
+    <link rel="canonical" href="http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41132207-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/about/">About me</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/apps/">Apps</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="http://michael-brown.net/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://michael-brown.net/"><img src="http://michael-brown.net/images/head.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Using PHLivePhotoView with Auto Layout</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-11-03T00:00:00Z">
+            Nov 3, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/swift/">#swift</a></span>
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/dev/">#dev</a></span>
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/autolayout/">#autolayout</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>So, I was working on updating my app <a href="http://memories.land">Memories</a> to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for <a href="https://developer.apple.com/reference/photosui/phlivephotoview"><code>PHLivePhotoView</code></a> and thought that this would be fairly straightforward. For Live Photos, I&rsquo;ll just use a <code>PHLivePhotoView</code> instead of a <code>UIImageView</code>.</p>
+
+<p>Well, as is usually the case when a developer says: &ldquo;this looks straightforward, I&rsquo;ll have it done in a couple of hours&rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.</p>
+
+<p>First I wasted an hour or so on a diversion into trying to use Swift 3 generics for implementing a view that could display either a <code>UIImageView</code> or a <code>PHLivePhotoView</code>, and failing miserably. But that&rsquo;s a topic for a different post. Once I got back on track I quickly had the Live Photo view solution implemented. But all I got was a blank screen. The view was invisible. It didn&rsquo;t even show up in Xcode&rsquo;s view debugger. For normal photos using a <code>UIImageView</code> it was all working fine and the only difference for live photos is that the <code>UIImageView</code> and its <code>UIImage</code> is substituted by a <code>PHLivePhotoView</code> with its associated <code>PHLivePhoto</code>.</p>
+
+<p>In order that the photos can be zoomed and panned by the user the image view is inside a <code>UIScrollView</code> and when you&rsquo;re using auto layout as long as you pin the edges of your view to the edges of the scroll view you never have to set the scroll view <code>contentSize</code> and everything &ldquo;just works&rdquo;, as explained in Apple&rsquo;s <a href="https://developer.apple.com/library/content/technotes/tn2154/_index.html#//apple_ref/doc/uid/DTS40013309-CH1-TNTAG3">Technical Note TN2154</a>.</p>
+
+<p>I checked my autolayout constraints in runtime over and over again, everything looked correct and exactly like it is when using a regular <code>UIImageView</code>. But then when I was using the Xcode view debugger I saw a tiny warning that said: &ldquo;scrollable content size is ambiguous&rdquo;. The scroll view auto layout approach mentioned above works with <code>UIImageView</code> because <code>UIImageView</code> returns the size of its <code>image.size</code> for its <code>intrinsicContentSize</code>. The TN above even says so: &ldquo;A simple example would be a large image view, which has an intrinsic content size derived from the size of the image&rdquo;.</p>
+
+<p>But surely <code>PHLivePhotoView</code> also returns its <code>livePhoto.size</code> for <code>intrinsicContentSize</code>? Well, no, it doesn&rsquo;t. It returns a <code>CGSize</code> with each dimension as <code>-1</code>. Well that explains it. The scroll view has no way of determining the correct content size. The solution is simply to add width and height auto layout constraints to the <code>PHLivePhotoView</code> equal to the <code>size.width</code> and <code>size.height</code> of the live photo view&rsquo;s <code>livePhoto</code>. Problem solved. All works perfectly now.</p>
+
+<p>I cannot think of any reason why <code>PHLivePhotoView</code> would not behave as <code>UIImageView</code> does and return the size of its underlying image for <code>intrinsicContentSize</code>. Once I&rsquo;ve filed a Radar I&rsquo;ll update this post with it&rsquo;s ID.</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://michael-brown.net/" style="background-image: url(http://michael-brown.net/images/head.png)"><span class="hidden">Michael Brown's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://michael-brown.net/">Michael Brown</a></h4>
+  
+  <p>Read <a href="http://michael-brown.net/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    
+    <span class="author-link icon-link"><a href="http://michael-brown.net">http://michael-brown.net</a></span>
+  </div>
+</section>
+
+
+
+    
+
+
+    
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Michael Brown</a> Copyright © 2016</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/index.js"></script>
+    
+</body>
+</html>
+

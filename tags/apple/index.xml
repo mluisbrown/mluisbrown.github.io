@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Apple on Michael Brown</title>
-    <link>http://michael-brown.net/tags/apple/</link>
-    <description>Recent content in Apple on Michael Brown</description>
+    <title>Michael Brown</title>
+    <link>http://michael-brown.net/tags/apple/index.xml</link>
+    <description>Recent content on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Tue, 01 Mar 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://michael-brown.net/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
     <item>

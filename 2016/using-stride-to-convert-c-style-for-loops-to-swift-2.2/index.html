@@ -5,6 +5,22 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    
+
+
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Using stride to convert C-style for loops to Swift 2.2"/>
+<meta name="twitter:description" content="With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become deprecated. The default Xcode fix-it for converting them uses a Range:
+let count = 5 for var index = 0; index &lt; count; index&#43;&#43; { doSomething(index) }  is converted do:
+let count = 5 for index in 0 ..&lt; count { doSomething(index) }  For the vast majority of C-style for loops this will work perfectly well."/>
+
+
+
   	<meta property="og:title" content=" Using stride to convert C-style for loops to Swift 2.2 &middot;  Michael Brown" />
   	<meta property="og:site_name" content="Michael Brown" />
   	<meta property="og:url" content="http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/" />
@@ -21,9 +37,9 @@
     
     
 
-  <title>
-     Using stride to convert C-style for loops to Swift 2.2 &middot;  Michael Brown
-  </title>
+    <title>
+       Using stride to convert C-style for loops to Swift 2.2 &middot;  Michael Brown
+    </title>
 
     <meta name="description" content="the only way to do great work is to love what you do" />
 
@@ -44,7 +60,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.15" />
+    <meta name="generator" content="Hugo 0.17" />
 
     <link rel="canonical" href="http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/" />
 
@@ -225,7 +241,7 @@ pages.indices.last?.stride(to: lastPage, by: -1).forEach(purgePage)
 
     
     <figure class="author-image">
-        <a class="img" href="http://michael-brown.net/" style="background-image: url(http://michael-brown.net/images/head.png)"><span class="hidden">'s Picture</span></a>
+        <a class="img" href="http://michael-brown.net/" style="background-image: url(http://michael-brown.net/images/head.png)"><span class="hidden">Michael Brown's Picture</span></a>
     </figure>
     
 
@@ -236,31 +252,19 @@ pages.indices.last?.stride(to: lastPage, by: -1).forEach(purgePage)
 
 
 <section class="author">
-  <h4><a href="http://michael-brown.net/"></a></h4>
+  <h4><a href="http://michael-brown.net/">Michael Brown</a></h4>
   
   <p>Read <a href="http://michael-brown.net/">more posts</a> by this author.</p>
   
   <div class="author-meta">
     
-    
+    <span class="author-link icon-link"><a href="http://michael-brown.net">http://michael-brown.net</a></span>
   </div>
 </section>
 
 
 
     
-<section class="share">
-  <h4>Share this post</h4>
-  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Using%20stride%20to%20convert%20C-style%20for%20loops%20to%20Swift%202.2&amp;url=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-stride-to-convert-c-style-for-loops-to-swift-2.2%2f"
-      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-      <span class="hidden">Twitter</span>
-  </a>
-  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-stride-to-convert-c-style-for-loops-to-swift-2.2%2f"
-      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-      <span class="hidden">Facebook</span>
-  </a>
-</section>
-
 
 
     
