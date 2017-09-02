@@ -51,7 +51,7 @@
         <link href="http://michael-brown.net/tags/swift/index.xml" rel="alternate" type="application/rss+xml" title="Swift &middot; Michael Brown" />
       
     
-    <meta name="generator" content="Hugo 0.17" />
+    <meta name="generator" content="Hugo 0.26" />
 
     <link rel="canonical" href="http://michael-brown.net/tags/swift/" />
 
@@ -143,6 +143,40 @@
 </nav>
 
 	</div>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">Swift and KVO context variables</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
+When I ran the app in Xcode this was the exception that was causing the crash:
+Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:)  The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue. <a class="read-more" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+
+        
+            <img class="author-thumb" src="http://michael-brown.net/images/head.png" alt="Author image" nopin="nopin" />
+        
+        
+            Michael Brown
+        
+        on
+            
+                <a href="http://michael-brown.net/tags/swift/">#swift</a>,
+            
+                <a href="http://michael-brown.net/tags/dev/">#dev</a>,
+            
+        
+        <time class="post-date" datetime="2017-09-02T00:00:00Z">
+            2 Sep 2017
+        </time>
+    </footer>
+</article>
 
 	
 	   

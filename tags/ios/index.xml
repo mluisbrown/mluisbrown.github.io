@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Michael Brown</title>
-    <link>http://michael-brown.net/tags/ios/index.xml</link>
-    <description>Recent content on Michael Brown</description>
+    <title>Ios on Michael Brown</title>
+    <link>http://michael-brown.net/tags/ios/</link>
+    <description>Recent content in Ios on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <atom:link href="http://michael-brown.net/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Mar 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://michael-brown.net/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Apple vs the FBI</title>
@@ -14,12 +17,8 @@
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
       <guid>http://michael-brown.net/2016/apple-vs-the-fbi/</guid>
-      <description>&lt;p&gt;The details of this case have been broken down and explained extremely well by &lt;a href=&#34;https://stratechery.com/2016/apple-the-fbi-and-security/&#34;&gt;Ben Thompson&lt;/a&gt;. The more technical details have also been very thoroughly covered by &lt;a href=&#34;http://www.zdziarski.com/blog/&#34;&gt;Jonathan Zdziarski&lt;/a&gt; on his blog.&lt;/p&gt;
-
-&lt;p&gt;I am clearly on Apple&amp;rsquo;s side in this battle, and very much hope that they don&amp;rsquo;t lose. However, it&amp;rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&amp;rsquo;t be a total disaster. All anyone would need to do to keep their iPhone secure would be use a longer numeric passcode or, even better, an alpha numeric passcode. A 10 digit passcode would take several years to brute force, rather than several hours for a 6 digit one. A 10 character alpha numeric passcode would take thousands of years to crack.&lt;/p&gt;
-
-&lt;p&gt;So, any clued up user (criminal or otherwise) who wants to keep their iPhone secure against GovtOS just needs to use a longer passcode to make it impossible to crack in a useful time period. With Touch ID, the inconvenience of a long passcode is hugely reduced, so I would strongly recommend it.&lt;/p&gt;
-</description>
+      <description>The details of this case have been broken down and explained extremely well by Ben Thompson. The more technical details have also been very thoroughly covered by Jonathan Zdziarski on his blog.
+I am clearly on Apple&amp;rsquo;s side in this battle, and very much hope that they don&amp;rsquo;t lose. However, it&amp;rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&amp;rsquo;t be a total disaster.</description>
     </item>
     
   </channel>

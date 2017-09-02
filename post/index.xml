@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post-rsses on Michael Brown</title>
-    <link>http://michael-brown.net/post/index.xml</link>
-    <description>Recent content in Post-rsses on Michael Brown</description>
+    <title>Posts on Michael Brown</title>
+    <link>http://michael-brown.net/post/</link>
+    <description>Recent content in Posts on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Thu, 03 Nov 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://michael-brown.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://michael-brown.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Swift and KVO context variables</title>
+      <link>http://michael-brown.net/2017/swift-and-kvo-context-variables/</link>
+      <pubDate>Sat, 02 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/2017/swift-and-kvo-context-variables/</guid>
+      <description>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
+When I ran the app in Xcode this was the exception that was causing the crash:
+Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:)  The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue.</description>
+    </item>
     
     <item>
       <title>Using PHLivePhotoView with Auto Layout</title>
@@ -15,20 +28,8 @@
       <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
       
       <guid>http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</guid>
-      <description>&lt;p&gt;So, I was working on updating my app &lt;a href=&#34;http://memories.land&#34;&gt;Memories&lt;/a&gt; to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for &lt;a href=&#34;https://developer.apple.com/reference/photosui/phlivephotoview&#34;&gt;&lt;code&gt;PHLivePhotoView&lt;/code&gt;&lt;/a&gt; and thought that this would be fairly straightforward. For Live Photos, I&amp;rsquo;ll just use a &lt;code&gt;PHLivePhotoView&lt;/code&gt; instead of a &lt;code&gt;UIImageView&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Well, as is usually the case when a developer says: &amp;ldquo;this looks straightforward, I&amp;rsquo;ll have it done in a couple of hours&amp;rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.&lt;/p&gt;
-
-&lt;p&gt;First I wasted an hour or so on a diversion into trying to use Swift 3 generics for implementing a view that could display either a &lt;code&gt;UIImageView&lt;/code&gt; or a &lt;code&gt;PHLivePhotoView&lt;/code&gt;, and failing miserably. But that&amp;rsquo;s a topic for a different post. Once I got back on track I quickly had the Live Photo view solution implemented. But all I got was a blank screen. The view was invisible. It didn&amp;rsquo;t even show up in Xcode&amp;rsquo;s view debugger. For normal photos using a &lt;code&gt;UIImageView&lt;/code&gt; it was all working fine and the only difference for live photos is that the &lt;code&gt;UIImageView&lt;/code&gt; and its &lt;code&gt;UIImage&lt;/code&gt; is substituted by a &lt;code&gt;PHLivePhotoView&lt;/code&gt; with its associated &lt;code&gt;PHLivePhoto&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In order that the photos can be zoomed and panned by the user the image view is inside a &lt;code&gt;UIScrollView&lt;/code&gt;. When you&amp;rsquo;re using auto layout as long as you pin the edges of your view to the edges of the scroll view you never have to set the scroll view &lt;code&gt;contentSize&lt;/code&gt; and everything &amp;ldquo;just works&amp;rdquo;, as explained in Apple&amp;rsquo;s &lt;a href=&#34;https://developer.apple.com/library/content/technotes/tn2154/_index.html#//apple_ref/doc/uid/DTS40013309-CH1-TNTAG3&#34;&gt;Technical Note TN2154&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I checked my autolayout constraints in runtime over and over again, everything looked correct and exactly like it is when using a regular &lt;code&gt;UIImageView&lt;/code&gt;. But then when I was using the Xcode view debugger I saw a tiny warning that said: &amp;ldquo;scrollable content size is ambiguous&amp;rdquo;. The scroll view auto layout approach mentioned above works with &lt;code&gt;UIImageView&lt;/code&gt; because &lt;code&gt;UIImageView&lt;/code&gt; returns the size of its &lt;code&gt;image.size&lt;/code&gt; for its &lt;code&gt;intrinsicContentSize&lt;/code&gt;. The TN above even says so: &amp;ldquo;A simple example would be a large image view, which has an intrinsic content size derived from the size of the image&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;But surely &lt;code&gt;PHLivePhotoView&lt;/code&gt; also returns its &lt;code&gt;livePhoto.size&lt;/code&gt; for &lt;code&gt;intrinsicContentSize&lt;/code&gt;? Well, no, it doesn&amp;rsquo;t. It returns a &lt;code&gt;CGSize&lt;/code&gt; with each dimension as &lt;code&gt;-1&lt;/code&gt;. So that explains it. The scroll view has no way of determining the correct content size. The solution is simply to add width and height auto layout constraints to the &lt;code&gt;PHLivePhotoView&lt;/code&gt; equal to the &lt;code&gt;size.width&lt;/code&gt; and &lt;code&gt;size.height&lt;/code&gt; of the live photo view&amp;rsquo;s &lt;code&gt;livePhoto&lt;/code&gt;. Problem solved. All works perfectly now.&lt;/p&gt;
-
-&lt;p&gt;I cannot think of any reason why &lt;code&gt;PHLivePhotoView&lt;/code&gt; would not behave as &lt;code&gt;UIImageView&lt;/code&gt; does and return the size of its underlying image for &lt;code&gt;intrinsicContentSize&lt;/code&gt;. Once I&amp;rsquo;ve filed a Radar I&amp;rsquo;ll update this post with it&amp;rsquo;s ID.&lt;/p&gt;
-</description>
+      <description>So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for PHLivePhotoView and thought that this would be fairly straightforward. For Live Photos, I&amp;rsquo;ll just use a PHLivePhotoView instead of a UIImageView.
+Well, as is usually the case when a developer says: &amp;ldquo;this looks straightforward, I&amp;rsquo;ll have it done in a couple of hours&amp;rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.</description>
     </item>
     
     <item>
@@ -37,31 +38,7 @@
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
       
       <guid>http://michael-brown.net/2016/podcast-sponsorship---an-experiment/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m an iOS developer in my spare time. You know, on &lt;a href=&#34;http://www.theonion.com/blogpost/find-the-thing-youre-most-passionate-about-then-do-31742&#34;&gt;evenings, and weekends&lt;/a&gt;. I recently launched an app called &lt;a href=&#34;http://memories.land&#34;&gt;Memories&lt;/a&gt;. I created the app mainly because it was an app that I wanted to have. I thought that if I wanted to use an app like this (and I use it every day), then maybe other people would like an app like that too. The app replicates a feature found in cloud photo services like &lt;a href=&#34;http://everpix.com&#34;&gt;Everpix&lt;/a&gt; (RIP) and &lt;a href=&#34;http://picturelife.com&#34;&gt;Picturelife&lt;/a&gt; that shows you all the photos you took on a certain date (usually today) in previous years. However, Apple&amp;rsquo;s iCloud Photo Library or Photos app do not have this feature &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:sherlocked&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:sherlocked&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. When I switched to iCloud Photo Library from Picturelife I really missed the feature, so that&amp;rsquo;s what led to my Memories app.&lt;/p&gt;
-
-&lt;p&gt;I launched the app at the start of the year. I tried, and failed, to get some well known Apple bloggers to mention the app. I did eventually get a mention in the MacStories newsletter sent only to subscribers. I was getting roughly 5 downloads a day. It steamed right into the App Store Top 10,000. Still, I made the app for myself, right? So what&amp;rsquo;s the problem? Well, I always had this nagging sensation that, if I like the app and use it every day, maybe other people would too, if they only knew it existed. So I weighed up possible ways to promote the app and settled on podcast sponsorship as probably the best option.&lt;/p&gt;
-
-&lt;p&gt;So, which podcast? It had to be one that I listened to and those include &lt;a href=&#34;http://atp.fm&#34;&gt;ATP&lt;/a&gt;, &lt;a href=&#34;http://daringfireball.net/thetalkshow/&#34;&gt;The Talk Show&lt;/a&gt;, &lt;a href=&#34;https://relay.fm/connected&#34;&gt;Connected&lt;/a&gt;, &lt;a href=&#34;http://mobilecouch.co&#34;&gt;Mobile Couch&lt;/a&gt;, &lt;a href=&#34;https://www.relay.fm/radar&#34;&gt;Under the Radar&lt;/a&gt;, &lt;a href=&#34;https://www.relay.fm/rd&#34;&gt;Reconcilable Differences&lt;/a&gt; and a few others. ATP and The Talk Show have by far the largest audiences, but their sponsorship rates are also &lt;a href=&#34;http://atp.fm/sponsor/&#34;&gt;way&lt;/a&gt; &lt;a href=&#34;http://daringfireball.net/feeds/sponsors/&#34;&gt;beyond&lt;/a&gt; what I can afford. The rates for Connected are much more reasonable and the podcast also has a history of discussing photo management in the context of Apple devices, especially in its previous incarnation as The Prompt. It seemed like the perfect fit. I had also recently heard a spot for James Thompson&amp;rsquo;s &lt;a href=&#34;http://www.pcalc.com/iphone/index.html&#34;&gt;PCalc&lt;/a&gt; on Connected. I was originally going to go for a single spot, but Stephen Hackett convinced me to go for three for a total that was within what I had budgeted for promoting the app. Without knowing how this would go, I had mentally written off that money, I had to be prepared to not make back a single penny of it.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s a good thing I had mentally written off the money. Because, well, I had to actually write off the money!&lt;/p&gt;
-
-&lt;p&gt;Prior to the sponsorship, I was getting 100-150 downloads a month, of which 10% went on to buy the $2 In App Purchase to unlock all the features of the app. During April, when I had sponsorship spots on &lt;a href=&#34;https://www.relay.fm/connected/86&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;https://www.relay.fm/connected/87&#34;&gt;consecutive&lt;/a&gt; episodes of Connected, I got 450 downloads, of which 25% of users went on to buy the In App Purchase.&lt;/p&gt;
-
-&lt;p&gt;So, I got a three fold increase in downloads, from people much more likely to buy the In App Purchase. Sounds pretty good, right? Well no, not really. Connected gets roughly 18,000 downloads per episode. Only around 5% of listeners looked at the app on the app store, about half of those installed it, and about a quarter of &lt;em&gt;those&lt;/em&gt; bought the in app purchase. At best I only got back about $200 of what the sponsorship cost me (a lot more).&lt;/p&gt;
-
-&lt;p&gt;You hear a lot about podcast sponsorship, and that it really works. Well, it doesn&amp;rsquo;t always work. I&amp;rsquo;m fortunate that I was able to afford trying it out and failing. But let this be a warning that podcast sponsorship is not the silver bullet to make your app a success.&lt;/p&gt;
-
-&lt;p&gt;My app is highly rated on the app store and all the feedback I&amp;rsquo;ve had from users is extremely positive, so it&amp;rsquo;s not that the app isn&amp;rsquo;t any good. It implements a feature that a lot of people clearly want and that Apple themselves are putting into Photos in iOS 10, so it&amp;rsquo;s not that no one wants this. The app also only has one direct competitor on the app store that I know of. So, what gives? Well, I really don&amp;rsquo;t know. If you have ideas I&amp;rsquo;d love to hear from you on &lt;a href=&#34;https://twitter.com/mluisbrown&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:sherlocked&#34;&gt;Looks like Apple sherlocked me in &lt;a href=&#34;http://www.apple.com/ios/ios10-preview/&#34;&gt;iOS 10&lt;/a&gt;. They even chose exactly the same name!
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:sherlocked&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>I&amp;rsquo;m an iOS developer in my spare time. You know, on evenings, and weekends. I recently launched an app called Memories. I created the app mainly because it was an app that I wanted to have. I thought that if I wanted to use an app like this (and I use it every day), then maybe other people would like an app like that too. The app replicates a feature found in cloud photo services like Everpix (RIP) and Picturelife that shows you all the photos you took on a certain date (usually today) in previous years.</description>
     </item>
     
     <item>
@@ -70,44 +47,8 @@
       <pubDate>Sun, 24 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</guid>
-      <description>&lt;p&gt;Comparing dates is one of the most common things you have to do as a developer of almost any type of software. At first glance it would seem to be something almost trivially easy. What could possibly go wrong? Well, turns out, quite a lot!&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m going to highlight just one issue that recently caused an embarassing bug in my app &lt;a href=&#34;http://memories.land&#34;&gt;Memories&lt;/a&gt;. It involved just a simple date comparison, ignoring time, and without crossing timezones.&lt;/p&gt;
-
-&lt;p&gt;I had an array of &lt;code&gt;NSDate&lt;/code&gt; and I wanted to get the index of the date in the array closest to the current date. The code was something like this:&lt;/p&gt;
-
-&lt;script src=&#34;https://gist.github.com/mluisbrown/8808c70899ed278e5e5e3ba06fee4320.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;The dates in the array have their time components all set to zero as I don&amp;rsquo;t care about the time, I just want to compare the date. To do the actual date comparison so that the time component is ignored, I&amp;rsquo;m using the rather handy &lt;code&gt;NSCalendar&lt;/code&gt; method &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSCalendar_Class/index.html#//apple_ref/occ/instm/NSCalendar/ordinalityOfUnit:inUnit:forDate:&#34;&gt;ordinalityOfUnit:inUnit:forDate:&lt;/a&gt;. If you call this method with &lt;code&gt;.Day&lt;/code&gt; for the &lt;code&gt;smaller&lt;/code&gt; parameter and &lt;code&gt;.Era&lt;/code&gt; for the &lt;code&gt;.Larger&lt;/code&gt; parameter it will give you a sort of Julian Day number&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:julian&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:julian&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; that&amp;rsquo;s easy to use for date arithmetic.&lt;/p&gt;
-
-&lt;p&gt;Looking at the code above, you would expect that the closest index when calling &lt;code&gt;let closest = indexOfClosestDate(someDates, toDate: NSDate())&lt;/code&gt; would be 1, since today is closest to, well, today. However, if you run the above code in an Xcode Playground somewhere in the GMT timezone whilst DST is in effect you will see that the result is 2. The &lt;code&gt;NSDate()&lt;/code&gt; for today is comparing as having an ordinal day number matching tomorrow, not today. What the hell is going on?&lt;/p&gt;
-
-&lt;p&gt;Well, the clue is in the phrase &amp;ldquo;somewhere in the GMT timezone whilst DST is in effect&amp;rdquo;. It&amp;rsquo;s one reason I didn&amp;rsquo;t spot this bug in my app until fairly recently as I had done all the development in the winter when DST is not in effect, and I live in Lisbon in Portugal which is in the GMT timezone.&lt;/p&gt;
-
-&lt;p&gt;The following playground should make everything clear (note that the values shown in comments are values I obtained running in the GMT timezone with DST in effect late on April 24th 2016):&lt;/p&gt;
-
-&lt;script src=&#34;https://gist.github.com/mluisbrown/31146f28f3311e62345d5d4ef32be4ed.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;The ordinal day number for &lt;code&gt;today&lt;/code&gt; is 736078. But the ordinal day number for &lt;code&gt;todayMidnight&lt;/code&gt; is 736077. 1 day difference. But how is that possible, since they are the same day? Take a look at the &lt;code&gt;debugDescription&lt;/code&gt; for each variable:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;today&lt;/code&gt;: &amp;ldquo;2016-04-24 21:16:39 +0000&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;todayMidnight&lt;/code&gt;: &amp;ldquo;2016-04-23 23:00:00 +0000&amp;rdquo;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You see? &lt;code&gt;todayMidnight&lt;/code&gt; is actually represented as the day &lt;em&gt;before&lt;/em&gt; at 23:00, not today at midnight! The reason for this is that &lt;code&gt;NSDate&lt;/code&gt; internally stores dates in &lt;a href=&#34;https://en.wikipedia.org/wiki/Coordinated_Universal_Time&#34;&gt;UTC&lt;/a&gt;, which is the same as GMT for most purposes. When DST is in effect, the time where I live is one hour ahead of GMT, so today at midnight, in GMT terms, is actually yesterday at 23:00.&lt;/p&gt;
-
-&lt;p&gt;The solution I found for comparing dates where you don&amp;rsquo;t care about the time component is to set the time component to midday (12:00) instead of midnight (00:00). That way, it would take a 12 hour offset due to DST or timezone changes to change the date in UTC terms.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:julian&#34;&gt;Well, since I&amp;rsquo;m using the Gregorian calendar, it would be a Gregorian Day Number, which is called a &lt;a href=&#34;https://en.wikipedia.org/wiki/Rata_Die&#34;&gt;Rata Die&lt;/a&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:julian&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>Comparing dates is one of the most common things you have to do as a developer of almost any type of software. At first glance it would seem to be something almost trivially easy. What could possibly go wrong? Well, turns out, quite a lot!
+I&amp;rsquo;m going to highlight just one issue that recently caused an embarassing bug in my app Memories. It involved just a simple date comparison, ignoring time, and without crossing timezones.</description>
     </item>
     
     <item>
@@ -116,79 +57,9 @@
       <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
       
       <guid>http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</guid>
-      <description>&lt;p&gt;With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become &lt;a href=&#34;https://github.com/apple/swift-evolution/blob/master/proposals/0007-remove-c-style-for-loops.md&#34;&gt;deprecated&lt;/a&gt;. The default Xcode fix-it for converting them uses a Range:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;let count = 5
-for var index = 0; index &amp;lt; count; index++ {
-    doSomething(index)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;is converted do:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;let count = 5
-for index in 0 ..&amp;lt; count {
-    doSomething(index)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For the vast majority of C-style for loops this will work perfectly well. But there are cases where using a Range not only won&amp;rsquo;t work as expected but will actually crash!&lt;/p&gt;
-
-&lt;p&gt;Consider the case where &lt;code&gt;count&lt;/code&gt; in the above example is -1 (we&amp;rsquo;ll get to why you might do that in a second). The C style loop would finish immediately as &lt;code&gt;index&lt;/code&gt; is already greater than &lt;code&gt;count&lt;/code&gt; on entry. However, the conversion using a Range would crash with:  &lt;code&gt;fatal error: Can&#39;t form Range with end &amp;lt; start&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;So, why on earth might you want have a loop range with an end less than the start? In my app &lt;a href=&#34;http://memories.land&#34;&gt;Memories&lt;/a&gt; (code available on &lt;a href=&#34;https://github.com/mluisbrown/Memories&#34;&gt;GitHub&lt;/a&gt;) I have a View Controller which is an image viewer where you can swipe left and right to navigate a set of images. In order to save memory, I only want to have the current visible image and the ones immediately to the left and to the right of it loaded in memory. As the user swipes through the images, all other images are purged from memory.&lt;/p&gt;
-
-&lt;p&gt;To purge all the images to the left of the visible image I had a loop that looked like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;let page = visiblePage
-let firstPage = page - 1
-let lastPage = page + 1
-
-// Purge anything before the first page
-for var index = 0; index &amp;lt; firstPage; ++index {
-    purgePage(index)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If the currently visible image is the first one (&lt;code&gt;page == 0&lt;/code&gt;), then &lt;code&gt;firstPage&lt;/code&gt; will be -1. In the Range version of the loop:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;for index in 0 ..&amp;lt; firstPage {
-    purgePage(index)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;we end up with a Range where the end is less than the start. Boom. Ok, this only happens in the edge case where we are on the first page (and the last page, in a similar case where the start is greater than the end). We could wrap the loop in an &lt;code&gt;if&lt;/code&gt; that only executes the loop when &lt;code&gt;page &amp;gt; 0&lt;/code&gt;. But I really hate writing special logic for edge cases if I can possibly avoid it. It&amp;rsquo;s so much cleaner if your logic handles edge cases by default. So what&amp;rsquo;s the solution? The Swift &lt;a href=&#34;http://swiftdoc.org/v2.1/protocol/Strideable&#34;&gt;&lt;code&gt;Strideable&lt;/code&gt;&lt;/a&gt; Protocol, particularly the &lt;a href=&#34;http://swiftdoc.org/v2.1/protocol/Strideable/#func--stride-to_by_&#34;&gt;&lt;code&gt;stride(to:by:)&lt;/code&gt;&lt;/a&gt; method. As the docs state:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Return the sequence of values (self, self + stride, self + stride + stride, &amp;hellip; last) where last is the last value in the progression that is less than end.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;So, for example: &lt;code&gt;0.stride(to: 5, by: 1)&lt;/code&gt; returns the sequence (0, 1, 2, 3, 4). Importantly, it doesn&amp;rsquo;t matter if the the value passed in the &lt;code&gt;to:&lt;/code&gt; parameter is less than the &lt;code&gt;self&lt;/code&gt; (the start value) so, for example: &lt;code&gt;0.stride(to: -1, by: 1)&lt;/code&gt; returns an empty sequence. So now we can just replace the Range with the sequence returned from &lt;code&gt;stride(to:by:)&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;for index in 0.stride(to: firstPage, by: 1) {
-    purgePage(index)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;the loop to purge the pages &lt;em&gt;after&lt;/em&gt; the current one is similar, using a reverse sequence (&lt;code&gt;pages&lt;/code&gt; here is the array of pages):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;for index in pages.indices.last?.stride(to: lastPage, by: -1) {
-    purgePage(index)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now that&amp;rsquo;s a lot nicer. No special logic for edge cases!&lt;/p&gt;
-
-&lt;p&gt;We can still improve on this though and make these loops more &amp;lsquo;functional&amp;rsquo; and perhaps more idiomatic Swift using &lt;a href=&#34;http://swiftdoc.org/v2.1/protocol/SequenceType/#func-foreach_&#34;&gt;&lt;code&gt;forEach(_:)&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;0.stride(to: firstPage, by: 1).forEach(purgePage)
-pages.indices.last?.stride(to: lastPage, by: -1).forEach(purgePage)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now that&amp;rsquo;s looking really elegant. I&amp;rsquo;m tempted to use &lt;code&gt;stride(to:by:).forEach(_:)&lt;/code&gt; to replace all my C style for loops in Swift.  There is a caveat though: you cannot break out of or continue a &lt;code&gt;forEach&lt;/code&gt; iteration with &lt;code&gt;break&lt;/code&gt; or &lt;code&gt;continue&lt;/code&gt;. For those cases just use a &lt;code&gt;stride(to:by:)&lt;/code&gt; sequence with &lt;code&gt;for index in&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Thanks to &lt;a href=&#34;https://twitter.com/NSRenato&#34;&gt;@NSRenato&lt;/a&gt; for the tip on using &lt;code&gt;stride&lt;/code&gt;.&lt;/p&gt;
-</description>
+      <description>With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become deprecated. The default Xcode fix-it for converting them uses a Range:
+let count = 5 for var index = 0; index &amp;lt; count; index++ { doSomething(index) }  is converted do:
+let count = 5 for index in 0 ..&amp;lt; count { doSomething(index) }  For the vast majority of C-style for loops this will work perfectly well.</description>
     </item>
     
     <item>
@@ -197,12 +68,8 @@ pages.indices.last?.stride(to: lastPage, by: -1).forEach(purgePage)
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
       <guid>http://michael-brown.net/2016/apple-vs-the-fbi/</guid>
-      <description>&lt;p&gt;The details of this case have been broken down and explained extremely well by &lt;a href=&#34;https://stratechery.com/2016/apple-the-fbi-and-security/&#34;&gt;Ben Thompson&lt;/a&gt;. The more technical details have also been very thoroughly covered by &lt;a href=&#34;http://www.zdziarski.com/blog/&#34;&gt;Jonathan Zdziarski&lt;/a&gt; on his blog.&lt;/p&gt;
-
-&lt;p&gt;I am clearly on Apple&amp;rsquo;s side in this battle, and very much hope that they don&amp;rsquo;t lose. However, it&amp;rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&amp;rsquo;t be a total disaster. All anyone would need to do to keep their iPhone secure would be use a longer numeric passcode or, even better, an alpha numeric passcode. A 10 digit passcode would take several years to brute force, rather than several hours for a 6 digit one. A 10 character alpha numeric passcode would take thousands of years to crack.&lt;/p&gt;
-
-&lt;p&gt;So, any clued up user (criminal or otherwise) who wants to keep their iPhone secure against GovtOS just needs to use a longer passcode to make it impossible to crack in a useful time period. With Touch ID, the inconvenience of a long passcode is hugely reduced, so I would strongly recommend it.&lt;/p&gt;
-</description>
+      <description>The details of this case have been broken down and explained extremely well by Ben Thompson. The more technical details have also been very thoroughly covered by Jonathan Zdziarski on his blog.
+I am clearly on Apple&amp;rsquo;s side in this battle, and very much hope that they don&amp;rsquo;t lose. However, it&amp;rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&amp;rsquo;t be a total disaster.</description>
     </item>
     
     <item>
@@ -211,14 +78,9 @@ pages.indices.last?.stride(to: lastPage, by: -1).forEach(purgePage)
       <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>http://michael-brown.net/2016/starting-over/</guid>
-      <description>&lt;p&gt;My old tumblr blog was a mess. I was doing a very bad impression of being an Apple blogger, interspersed with the odd post about iOS development. The posts were too long and too infrequent. It was actually starting to be an embarrassment.&lt;/p&gt;
-
-&lt;p&gt;So I killed it. All the old posts are gone.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m starting over, with a new blog using the &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static blogging engine and hosting everything on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt;. The source for the blog can be found at &lt;a href=&#34;https://github.com/mluisbrown/michael-brown.net-hugo&#34;&gt;here&lt;/a&gt; on GitHub.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m setting myself a target of at least one post per week, even if it&amp;rsquo;s only a one-liner with a link. Here we go!&lt;/p&gt;
-</description>
+      <description>My old tumblr blog was a mess. I was doing a very bad impression of being an Apple blogger, interspersed with the odd post about iOS development. The posts were too long and too infrequent. It was actually starting to be an embarrassment.
+So I killed it. All the old posts are gone.
+I&amp;rsquo;m starting over, with a new blog using the Hugo static blogging engine and hosting everything on GitHub Pages.</description>
     </item>
     
   </channel>

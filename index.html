@@ -49,7 +49,7 @@
         <link href="http://michael-brown.net/index.xml" rel="alternate" type="application/rss+xml" title="Michael Brown" />
       
     
-    <meta name="generator" content="Hugo 0.17" />
+    <meta name="generator" content="Hugo 0.26" />
 
     <link rel="canonical" href="http://michael-brown.net/" />
 
@@ -167,6 +167,8 @@
     
         
     
+        
+    
 
     
         
@@ -188,6 +190,40 @@
 </nav>
 
     </div>
+
+    
+        
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">Swift and KVO context variables</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
+When I ran the app in Xcode this was the exception that was causing the crash:
+Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:)  The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue. <a class="read-more" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+
+        
+            <img class="author-thumb" src="http://michael-brown.net/images/head.png" alt="Author image" nopin="nopin" />
+        
+        
+            Michael Brown
+        
+        on
+            
+                <a href="http://michael-brown.net/tags/swift/">#swift</a>,
+            
+                <a href="http://michael-brown.net/tags/dev/">#dev</a>,
+            
+        
+        <time class="post-date" datetime="2017-09-02T00:00:00Z">
+            2 Sep 2017
+        </time>
+    </footer>
+</article>
 
     
         
@@ -321,43 +357,6 @@ let count = 5 for index in 0 ..&lt; count { doSomething(index) }  For the vast m
         
         <time class="post-date" datetime="2016-03-08T00:00:00Z">
             8 Mar 2016
-        </time>
-    </footer>
-</article>
-
-    
-        
-<article class="post post">
-    <header class="post-header">
-        <h2 class="post-title"><a href="http://michael-brown.net/2016/apple-vs-the-fbi/">Apple vs the FBI</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>The details of this case have been broken down and explained extremely well by Ben Thompson. The more technical details have also been very thoroughly covered by Jonathan Zdziarski on his blog.
-I am clearly on Apple&rsquo;s side in this battle, and very much hope that they don&rsquo;t lose. However, it&rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&rsquo;t be a total disaster. <a class="read-more" href="http://michael-brown.net/2016/apple-vs-the-fbi/">&raquo;</a></p>
-    </section>
-    <footer class="post-meta">
-        
-        
-
-        
-            <img class="author-thumb" src="http://michael-brown.net/images/head.png" alt="Author image" nopin="nopin" />
-        
-        
-            Michael Brown
-        
-        on
-            
-                <a href="http://michael-brown.net/tags/apple/">#apple</a>,
-            
-                <a href="http://michael-brown.net/tags/ios/">#ios</a>,
-            
-                <a href="http://michael-brown.net/tags/security/">#security</a>,
-            
-                <a href="http://michael-brown.net/tags/encryption/">#encryption</a>,
-            
-        
-        <time class="post-date" datetime="2016-03-01T00:00:00Z">
-            1 Mar 2016
         </time>
     </footer>
 </article>

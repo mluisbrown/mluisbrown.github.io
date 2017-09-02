@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+
+
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="Swift and KVO context variables"/>
+<meta name="twitter:description" content="I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
+When I ran the app in Xcode this was the exception that was causing the crash:
+Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:)  The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue."/>
+
+
+
+  	<meta property="og:title" content=" Swift and KVO context variables &middot;  Michael Brown" />
+  	<meta property="og:site_name" content="Michael Brown" />
+  	<meta property="og:url" content="http://michael-brown.net/2017/swift-and-kvo-context-variables/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2017-09-02T00:00:00Z" />
+
+    
+    <meta property="og:article:tag" content="swift" />
+    
+    <meta property="og:article:tag" content="dev" />
+    
+    
+
+    <title>
+       Swift and KVO context variables &middot;  Michael Brown
+    </title>
+
+    <meta name="description" content="the only way to do great work is to love what you do" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://michael-brown.net/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://michael-brown.net/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="http://michael-brown.net/index.xml" rel="alternate" type="application/rss+xml" title="Michael Brown" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.26" />
+
+    <link rel="canonical" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/" />
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41132207-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/about/">About me</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/apps/">Apps</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="http://michael-brown.net/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://michael-brown.net/"><img src="http://michael-brown.net/images/head.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Swift and KVO context variables</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-09-02T00:00:00Z">
+            Sep 2, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/swift/">#swift</a></span>
+         
+          <span class="post-tag small"><a href="http://michael-brown.net/tags/dev/">#dev</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>I came across a crash in my app <a href="https://github.com/mluisbrown/Memories">Memories</a> when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as <code>AVFoundation</code> requires you to use it for a lot of things.</p>
+
+<p>When I ran the app in Xcode this was the exception that was causing the crash:</p>
+
+<pre><code>Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access.
+Previous access (a modification) started at addObserver(_:forKeyPath:options:context:)
+Current access (a modification) started at observeValue(forKeyPath:of:change:context:)
+</code></pre>
+
+<p>The hex address was the address of the property I was using as the context passed to <code>addObserver()</code> and which I was checking in <code>observeValue</code>. I was using just a regular instance variable for the context. I was also using the <code>.initial</code> option when adding the observer in order to observe the initial value, not just changes:</p>
+
+<script src="https://gist.github.com/mluisbrown/e90f078200d3c88925d94e09a0e0594d.js"></script>
+
+<p>When you use the <code>.initial</code> option <code>observeValue(forKeyPath:)</code> is called immediately as part of the call to <code>addObserver()</code>, in the same stack frame. This is what leads the Swift runtime to believe that &ldquo;Simultaneous access&rdquo; is occuring to the context variable. Even though no actual modification is occuring, the runtime probably has no way to determine that for Swift pointers bridged to <code>UnsafeMutableRawPointer</code> and so is playing it safe.</p>
+
+<p>I found the solution to the problem in this <a href="https://developer.apple.com/swift/blog/?id=6">Apple Swift Blog post</a> about interacting with C pointers from July 2014! So this has been a problem right since the start of Swift, but only now, perhaps with improved runtime checks in Swift 4, is it causing crashes.</p>
+
+<p>The relevant part is here (emphasis mine):</p>
+
+<blockquote>
+<p>These conversions cannot safely be used if the callee saves the pointer value for use after it returns. The pointer that results from these conversions is only guaranteed to be valid for the duration of a call. Even if you pass the same variable, array, or string as multiple pointer arguments, you could receive a different pointer each time. <strong>An exception to this is global or static stored variables. You can safely use the address of a global variable as a persistent unique pointer value, e.g.: as a KVO context parameter.</strong></p>
+</blockquote>
+
+<p>The &ldquo;conversions&rdquo; referred to above are the bridging of <code>&amp;varName</code> to an <code>UnsafeMutableRawPointer</code>.</p>
+
+<p>So the solution is very simple. Either pull the context variable out of the class and make it a global variable (which can still be <code>private</code> so it&rsquo;s not visible outside of the file in which it&rsquo;s declared), or make it a <code>static</code> class variable:</p>
+
+<script src="https://gist.github.com/mluisbrown/3c91d8e07af52aebfca9e897fad99e6d.js"></script>
+
+<p>There are lots of bits of KVO sample code on Stack Overflow and elsewhere which don&rsquo;t follow this rule, so a lot of people are going to get burned with Swift 4, as the solution is not well documented, or easy to find.</p>
+
+<p>On the other hand, this problem only occurs if you use the <code>.initial</code> observing option and if you use a context variable, which you <a href="https://stackoverflow.com/a/11917449/368085">should</a>, although many people don&rsquo;t.</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+    <figure class="author-image">
+        <a class="img" href="http://michael-brown.net/" style="background-image: url(http://michael-brown.net/images/head.png)"><span class="hidden">Michael Brown's Picture</span></a>
+    </figure>
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="http://michael-brown.net/">Michael Brown</a></h4>
+  
+  <p>Read <a href="http://michael-brown.net/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    
+    <span class="author-link icon-link"><a href="http://michael-brown.net">http://michael-brown.net</a></span>
+  </div>
+</section>
+
+
+
+    
+
+
+    
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Michael Brown</a> Copyright © 2016</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/index.js"></script>
+    
+</body>
+</html>
+

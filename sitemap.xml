@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://michael-brown.net/</loc>
-    <lastmod>2016-11-03T00:00:00+00:00</lastmod>
+    <loc>http://michael-brown.net/2017/swift-and-kvo-context-variables/</loc>
+    <lastmod>2017-09-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -44,6 +45,95 @@
   <url>
     <loc>http://michael-brown.net/apps/</loc>
     <lastmod>2016-02-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/apple/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/autolayout/</loc>
+    <lastmod>2016-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/blog/</loc>
+    <lastmod>2016-02-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/business/</loc>
+    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/dev/</loc>
+    <lastmod>2017-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/encryption/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/ios/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/meta/</loc>
+    <lastmod>2016-02-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/</loc>
+    <lastmod>2017-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/podcast/</loc>
+    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/post/</loc>
+    <lastmod>2017-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/security/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/swift/</loc>
+    <lastmod>2017-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

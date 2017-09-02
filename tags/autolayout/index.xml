@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Michael Brown</title>
-    <link>http://michael-brown.net/tags/autolayout/index.xml</link>
-    <description>Recent content on Michael Brown</description>
+    <title>Autolayout on Michael Brown</title>
+    <link>http://michael-brown.net/tags/autolayout/</link>
+    <description>Recent content in Autolayout on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <atom:link href="http://michael-brown.net/tags/autolayout/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://michael-brown.net/tags/autolayout/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Using PHLivePhotoView with Auto Layout</title>
@@ -14,20 +17,8 @@
       <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
       
       <guid>http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</guid>
-      <description>&lt;p&gt;So, I was working on updating my app &lt;a href=&#34;http://memories.land&#34;&gt;Memories&lt;/a&gt; to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for &lt;a href=&#34;https://developer.apple.com/reference/photosui/phlivephotoview&#34;&gt;&lt;code&gt;PHLivePhotoView&lt;/code&gt;&lt;/a&gt; and thought that this would be fairly straightforward. For Live Photos, I&amp;rsquo;ll just use a &lt;code&gt;PHLivePhotoView&lt;/code&gt; instead of a &lt;code&gt;UIImageView&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Well, as is usually the case when a developer says: &amp;ldquo;this looks straightforward, I&amp;rsquo;ll have it done in a couple of hours&amp;rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.&lt;/p&gt;
-
-&lt;p&gt;First I wasted an hour or so on a diversion into trying to use Swift 3 generics for implementing a view that could display either a &lt;code&gt;UIImageView&lt;/code&gt; or a &lt;code&gt;PHLivePhotoView&lt;/code&gt;, and failing miserably. But that&amp;rsquo;s a topic for a different post. Once I got back on track I quickly had the Live Photo view solution implemented. But all I got was a blank screen. The view was invisible. It didn&amp;rsquo;t even show up in Xcode&amp;rsquo;s view debugger. For normal photos using a &lt;code&gt;UIImageView&lt;/code&gt; it was all working fine and the only difference for live photos is that the &lt;code&gt;UIImageView&lt;/code&gt; and its &lt;code&gt;UIImage&lt;/code&gt; is substituted by a &lt;code&gt;PHLivePhotoView&lt;/code&gt; with its associated &lt;code&gt;PHLivePhoto&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In order that the photos can be zoomed and panned by the user the image view is inside a &lt;code&gt;UIScrollView&lt;/code&gt;. When you&amp;rsquo;re using auto layout as long as you pin the edges of your view to the edges of the scroll view you never have to set the scroll view &lt;code&gt;contentSize&lt;/code&gt; and everything &amp;ldquo;just works&amp;rdquo;, as explained in Apple&amp;rsquo;s &lt;a href=&#34;https://developer.apple.com/library/content/technotes/tn2154/_index.html#//apple_ref/doc/uid/DTS40013309-CH1-TNTAG3&#34;&gt;Technical Note TN2154&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I checked my autolayout constraints in runtime over and over again, everything looked correct and exactly like it is when using a regular &lt;code&gt;UIImageView&lt;/code&gt;. But then when I was using the Xcode view debugger I saw a tiny warning that said: &amp;ldquo;scrollable content size is ambiguous&amp;rdquo;. The scroll view auto layout approach mentioned above works with &lt;code&gt;UIImageView&lt;/code&gt; because &lt;code&gt;UIImageView&lt;/code&gt; returns the size of its &lt;code&gt;image.size&lt;/code&gt; for its &lt;code&gt;intrinsicContentSize&lt;/code&gt;. The TN above even says so: &amp;ldquo;A simple example would be a large image view, which has an intrinsic content size derived from the size of the image&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;But surely &lt;code&gt;PHLivePhotoView&lt;/code&gt; also returns its &lt;code&gt;livePhoto.size&lt;/code&gt; for &lt;code&gt;intrinsicContentSize&lt;/code&gt;? Well, no, it doesn&amp;rsquo;t. It returns a &lt;code&gt;CGSize&lt;/code&gt; with each dimension as &lt;code&gt;-1&lt;/code&gt;. So that explains it. The scroll view has no way of determining the correct content size. The solution is simply to add width and height auto layout constraints to the &lt;code&gt;PHLivePhotoView&lt;/code&gt; equal to the &lt;code&gt;size.width&lt;/code&gt; and &lt;code&gt;size.height&lt;/code&gt; of the live photo view&amp;rsquo;s &lt;code&gt;livePhoto&lt;/code&gt;. Problem solved. All works perfectly now.&lt;/p&gt;
-
-&lt;p&gt;I cannot think of any reason why &lt;code&gt;PHLivePhotoView&lt;/code&gt; would not behave as &lt;code&gt;UIImageView&lt;/code&gt; does and return the size of its underlying image for &lt;code&gt;intrinsicContentSize&lt;/code&gt;. Once I&amp;rsquo;ve filed a Radar I&amp;rsquo;ll update this post with it&amp;rsquo;s ID.&lt;/p&gt;
-</description>
+      <description>So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for PHLivePhotoView and thought that this would be fairly straightforward. For Live Photos, I&amp;rsquo;ll just use a PHLivePhotoView instead of a UIImageView.
+Well, as is usually the case when a developer says: &amp;ldquo;this looks straightforward, I&amp;rsquo;ll have it done in a couple of hours&amp;rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.</description>
     </item>
     
   </channel>
