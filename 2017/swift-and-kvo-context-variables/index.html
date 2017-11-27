@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     
-
-
     
         <meta name="twitter:card" content="summary"/>
     
@@ -15,33 +13,38 @@
 
 
 <meta name="twitter:title" content="Swift and KVO context variables"/>
-<meta name="twitter:description" content="I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
-When I ran the app in Xcode this was the exception that was causing the crash:
-Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:)  The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue."/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@mluisbrown"/>
 
 
 
-  	<meta property="og:title" content=" Swift and KVO context variables &middot;  Michael Brown" />
+  	<meta property="og:title" content="Swift and KVO context variables &middot; Michael Brown" />
   	<meta property="og:site_name" content="Michael Brown" />
   	<meta property="og:url" content="http://michael-brown.net/2017/swift-and-kvo-context-variables/" />
 
     
+        
+            <meta property="og:image" content="/images/bridge2.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
   	<meta property="og:type" content="article" />
-
-    <meta property="og:article:published_time" content="2017-09-02T00:00:00Z" />
+    <meta property="article:published_time" content="2017-09-02T00:00:00Z" />
 
     
-    <meta property="og:article:tag" content="swift" />
+    <meta property="article:tag" content="swift" />
     
-    <meta property="og:article:tag" content="dev" />
+    <meta property="article:tag" content="dev" />
     
     
 
-    <title>
-       Swift and KVO context variables &middot;  Michael Brown
-    </title>
+    <title>Swift and KVO context variables &middot; Michael Brown</title>
 
-    <meta name="description" content="the only way to do great work is to love what you do" />
+    
+    <meta name="description" content="I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFounda" />
+    
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,8 +54,10 @@ Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access
 
     <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/screen.css" />
     <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/nav.css" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
 
+    
+
+    
 
     
       
@@ -63,6 +68,66 @@ Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access
     <meta name="generator" content="Hugo 0.26" />
 
     <link rel="canonical" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://michael-brown.net/images/head.png
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://michael-brown.net/images/head.png,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": http://michael-brown.net,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": Swift and KVO context variables,
+    "name": Swift and KVO context variables,
+    "wordCount": 482,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://michael-brown.net/2017/swift-and-kvo-context-variables/,
+    "datePublished": 2017-09-02T00:00Z,
+    "dateModified": 2017-09-02T00:00Z,
+    
+    "keywords": swift, dev,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://michael-brown.net/2017/swift-and-kvo-context-variables/
+    }
+}
+    </script>
+    
+
+
+    
 
     
     <script>
@@ -92,11 +157,6 @@ Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access
         
             
             <li class="nav-opened" role="presentation">
-            	<a href="http://michael-brown.net/">Blog</a>
-            </li>
-        
-            
-            <li class="nav-opened" role="presentation">
             	<a href="http://michael-brown.net/about/">About me</a>
             </li>
         
@@ -105,8 +165,14 @@ Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access
             	<a href="http://michael-brown.net/apps/">Apps</a>
             </li>
         
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/">Blog</a>
+            </li>
+        
+        
     </ul>
-    
+
     
     <a class="subscribe-button icon-feed" href="http://michael-brown.net/index.xml">Subscribe</a>
     
@@ -115,7 +181,6 @@ Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access
 
 
  <div class="site-wrapper">
-
 
 
 
@@ -152,9 +217,9 @@ Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access
           </time>
         
          
-          <span class="post-tag small"><a href="http://michael-brown.net/tags/swift/">#swift</a></span>
+          <span class="post-tag small"><a href="http://michael-brown.net//tags/swift/">#swift</a></span>
          
-          <span class="post-tag small"><a href="http://michael-brown.net/tags/dev/">#dev</a></span>
+          <span class="post-tag small"><a href="http://michael-brown.net//tags/dev/">#dev</a></span>
          
         </section>
     </header>
@@ -200,15 +265,17 @@ Current access (a modification) started at observeValue(forKeyPath:of:change:con
 
 
     
-    <figure class="author-image">
-        <a class="img" href="http://michael-brown.net/" style="background-image: url(http://michael-brown.net/images/head.png)"><span class="hidden">Michael Brown's Picture</span></a>
-    </figure>
-    
-
-    
 
 
 
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://michael-brown.net/" style="background-image: url(/images/head.png)"><span class="hidden">Michael Brown's Picture</span></a>
+</figure>
 
 
 <section class="author">
@@ -224,10 +291,34 @@ Current access (a modification) started at observeValue(forKeyPath:of:change:con
 
 
 
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Swift%20and%20KVO%20context%20variables&nbsp;-&nbsp;Michael%20Brown&amp;url=http%3a%2f%2fmichael-brown.net%2f2017%2fswift-and-kvo-context-variables%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fmichael-brown.net%2f2017%2fswift-and-kvo-context-variables%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fmichael-brown.net%2f2017%2fswift-and-kvo-context-variables%2f&amp;description=Swift%20and%20KVO%20context%20variables"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fmichael-brown.net%2f2017%2fswift-and-kvo-context-variables%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
     
 
 
-    
+
 
 
 
@@ -236,6 +327,21 @@ Current access (a modification) started at observeValue(forKeyPath:of:change:con
 </article>
 
 </main>
+
+
+  <aside class="read-next">
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/">
+          <section class="post">
+              <h2>Using PHLivePhotoView with Auto Layout</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
     <footer class="site-footer clearfix">
         <section class="copyright"><a href="">Michael Brown</a> Copyright © 2016</section>
         

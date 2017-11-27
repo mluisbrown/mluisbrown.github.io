@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     
-
-
     
         <meta name="twitter:card" content="summary"/>
     
@@ -15,34 +13,40 @@
 
 
 <meta name="twitter:title" content="Using PHLivePhotoView with Auto Layout"/>
-<meta name="twitter:description" content="So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for PHLivePhotoView and thought that this would be fairly straightforward. For Live Photos, I&rsquo;ll just use a PHLivePhotoView instead of a UIImageView.
-Well, as is usually the case when a developer says: &ldquo;this looks straightforward, I&rsquo;ll have it done in a couple of hours&rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong."/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@mluisbrown"/>
 
 
 
-  	<meta property="og:title" content=" Using PHLivePhotoView with Auto Layout &middot;  Michael Brown" />
+  	<meta property="og:title" content="Using PHLivePhotoView with Auto Layout &middot; Michael Brown" />
   	<meta property="og:site_name" content="Michael Brown" />
   	<meta property="og:url" content="http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/" />
 
     
+        
+            <meta property="og:image" content="/images/bridge2.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
   	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2016-11-03T00:00:00Z" />
 
-    <meta property="og:article:published_time" content="2016-11-03T00:00:00Z" />
-
     
-    <meta property="og:article:tag" content="swift" />
+    <meta property="article:tag" content="swift" />
     
-    <meta property="og:article:tag" content="dev" />
+    <meta property="article:tag" content="dev" />
     
-    <meta property="og:article:tag" content="autolayout" />
+    <meta property="article:tag" content="autolayout" />
     
     
 
-    <title>
-       Using PHLivePhotoView with Auto Layout &middot;  Michael Brown
-    </title>
+    <title>Using PHLivePhotoView with Auto Layout &middot; Michael Brown</title>
 
-    <meta name="description" content="the only way to do great work is to love what you do" />
+    
+    <meta name="description" content="So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for " />
+    
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,8 +56,10 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
 
     <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/screen.css" />
     <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/nav.css" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
 
+    
+
+    
 
     
       
@@ -64,6 +70,66 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
     <meta name="generator" content="Hugo 0.26" />
 
     <link rel="canonical" href="http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": ,
+        "logo": http://michael-brown.net/images/head.png
+    },
+    "author": {
+        "@type": "Person",
+        "name": ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": http://michael-brown.net/images/head.png,
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": http://michael-brown.net,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": Using PHLivePhotoView with Auto Layout,
+    "name": Using PHLivePhotoView with Auto Layout,
+    "wordCount": 474,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": en
+    },
+    "url": http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/,
+    "datePublished": 2016-11-03T00:00Z,
+    "dateModified": 2016-11-03T00:00Z,
+    
+    "keywords": swift, dev, autolayout,
+    "description": ,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/
+    }
+}
+    </script>
+    
+
+
+    
 
     
     <script>
@@ -93,11 +159,6 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
         
             
             <li class="nav-opened" role="presentation">
-            	<a href="http://michael-brown.net/">Blog</a>
-            </li>
-        
-            
-            <li class="nav-opened" role="presentation">
             	<a href="http://michael-brown.net/about/">About me</a>
             </li>
         
@@ -106,8 +167,14 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
             	<a href="http://michael-brown.net/apps/">Apps</a>
             </li>
         
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/">Blog</a>
+            </li>
+        
+        
     </ul>
-    
+
     
     <a class="subscribe-button icon-feed" href="http://michael-brown.net/index.xml">Subscribe</a>
     
@@ -116,7 +183,6 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
 
 
  <div class="site-wrapper">
-
 
 
 
@@ -153,11 +219,11 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
           </time>
         
          
-          <span class="post-tag small"><a href="http://michael-brown.net/tags/swift/">#swift</a></span>
+          <span class="post-tag small"><a href="http://michael-brown.net//tags/swift/">#swift</a></span>
          
-          <span class="post-tag small"><a href="http://michael-brown.net/tags/dev/">#dev</a></span>
+          <span class="post-tag small"><a href="http://michael-brown.net//tags/dev/">#dev</a></span>
          
-          <span class="post-tag small"><a href="http://michael-brown.net/tags/autolayout/">#autolayout</a></span>
+          <span class="post-tag small"><a href="http://michael-brown.net//tags/autolayout/">#autolayout</a></span>
          
         </section>
     </header>
@@ -184,15 +250,17 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
 
 
     
-    <figure class="author-image">
-        <a class="img" href="http://michael-brown.net/" style="background-image: url(http://michael-brown.net/images/head.png)"><span class="hidden">Michael Brown's Picture</span></a>
-    </figure>
-    
-
-    
 
 
 
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://michael-brown.net/" style="background-image: url(/images/head.png)"><span class="hidden">Michael Brown's Picture</span></a>
+</figure>
 
 
 <section class="author">
@@ -208,10 +276,34 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
 
 
 
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Using%20PHLivePhotoView%20with%20Auto%20Layout&nbsp;-&nbsp;Michael%20Brown&amp;url=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-phlivephotoview-with-auto-layout%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-phlivephotoview-with-auto-layout%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-phlivephotoview-with-auto-layout%2f&amp;description=Using%20PHLivePhotoView%20with%20Auto%20Layout"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-phlivephotoview-with-auto-layout%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
     
 
 
-    
+
 
 
 
@@ -220,6 +312,28 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
 </article>
 
 </main>
+
+
+  <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">
+          <section class="post">
+              <h2>Swift and KVO context variables</h2>
+              
+          </section>
+      </a>
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://michael-brown.net/2016/podcast-sponsorship---an-experiment/">
+          <section class="post">
+              <h2>Podcast sponsorship - an experiment</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
     <footer class="site-footer clearfix">
         <section class="copyright"><a href="">Michael Brown</a> Copyright © 2016</section>
         
