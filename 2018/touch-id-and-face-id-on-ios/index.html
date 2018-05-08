@@ -111,7 +111,7 @@
     },
     "headline": Touch ID and Face ID on iOS,
     "name": Touch ID and Face ID on iOS,
-    "wordCount": 2259,
+    "wordCount": 2295,
     "timeRequired": "PT11M",
     "inLanguage": {
       "@type": "Language",
@@ -236,7 +236,7 @@
 
 <p>Adding support for Touch ID and Face ID to your app is not always completely straightforward, especially given that the documentation from Apple on the APIs is somewhat sparse and in some cases incorrect. I recently added Face ID and Touch ID support to my company&rsquo;s app and I thought it would be helpful to document what I found.</p>
 
-<p>There is only a single class, <a href="https://developer.apple.com/documentation/localauthentication/lacontext">LAContext</a> in the a <a href="https://developer.apple.com/documentation/localauthentication/">LocalAuthentication</a> framework, so it&rsquo;s surprising how complex it can get.</p>
+<p>There is only a single class, <a href="https://developer.apple.com/documentation/localauthentication/lacontext">LAContext</a> in the <a href="https://developer.apple.com/documentation/localauthentication/">LocalAuthentication</a> framework, so it&rsquo;s surprising how complex it can get.</p>
 
 <p>The most naive implementation of a biometric (Touch ID or Face ID) authentication request is as in Apple&rsquo;s example:</p>
 
@@ -276,7 +276,7 @@
 
 <h2 id="what-are-you-authenticating">What are you authenticating?</h2>
 
-<p>When integrating Touch ID and Face ID, you need to think about what it is that you are actually protecting and how, because if you were dependent on the user&rsquo;s password for, say, making an API call to a server to get an auth token, then you won&rsquo;t have that password if you&rsquo;re using biomtric authentication. There are a couple of options:</p>
+<p>When integrating Touch ID and Face ID, you need to think about what it is that you are actually protecting and how, because if you were dependent on the user&rsquo;s password for, say, making an API call to a server to get an auth token, then you won&rsquo;t have that password if you&rsquo;re using biometric authentication. There are a couple of options:</p>
 
 <ul>
 <li>You could store the password (well, a hash of it) in the keychain and use that.</li>
@@ -416,6 +416,10 @@ let data = converted[kSecValueData as String] as! Data
 <h3 id="decrypt-some-data">Decrypt some data</h3>
 
 <script src="https://gist.github.com/mluisbrown/dacc6c96103baa640ad1fc01a3c53801.js"></script>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I hope I&rsquo;ve been able to shed some light on an area of iOS development that isn&rsquo;t particularly well documented, and that has a lot more nuances and edge cases than might appear at first sight.</p>
 
     </section>
 

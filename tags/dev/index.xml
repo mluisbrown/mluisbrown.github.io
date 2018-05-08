@@ -18,7 +18,7 @@
       
       <guid>http://michael-brown.net/2018/touch-id-and-face-id-on-ios/</guid>
       <description>Introduction Adding support for Touch ID and Face ID to your app is not always completely straightforward, especially given that the documentation from Apple on the APIs is somewhat sparse and in some cases incorrect. I recently added Face ID and Touch ID support to my company&amp;rsquo;s app and I thought it would be helpful to document what I found.
-There is only a single class, LAContext in the a LocalAuthentication framework, so it&amp;rsquo;s surprising how complex it can get.</description>
+There is only a single class, LAContext in the LocalAuthentication framework, so it&amp;rsquo;s surprising how complex it can get.</description>
     </item>
     
     <item>
