@@ -58,6 +58,11 @@
     
 
     
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        
+        <script>hljs.initHighlightingOnLoad();</script>
+    
 
     
       
@@ -65,7 +70,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.26" />
+    <meta name="generator" content="Hugo 0.39" />
 
     <link rel="canonical" href="http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/" />
 
@@ -233,7 +238,7 @@
 
 <script src="https://gist.github.com/mluisbrown/8808c70899ed278e5e5e3ba06fee4320.js"></script>
 
-<p>The dates in the array have their time components all set to zero as I don&rsquo;t care about the time, I just want to compare the date. To do the actual date comparison so that the time component is ignored, I&rsquo;m using the rather handy <code>NSCalendar</code> method <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSCalendar_Class/index.html#//apple_ref/occ/instm/NSCalendar/ordinalityOfUnit:inUnit:forDate:">ordinalityOfUnit:inUnit:forDate:</a>. If you call this method with <code>.Day</code> for the <code>smaller</code> parameter and <code>.Era</code> for the <code>.Larger</code> parameter it will give you a sort of Julian Day number<sup class="footnote-ref" id="fnref:julian"><a rel="footnote" href="#fn:julian">1</a></sup> that&rsquo;s easy to use for date arithmetic.</p>
+<p>The dates in the array have their time components all set to zero as I don&rsquo;t care about the time, I just want to compare the date. To do the actual date comparison so that the time component is ignored, I&rsquo;m using the rather handy <code>NSCalendar</code> method <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSCalendar_Class/index.html#//apple_ref/occ/instm/NSCalendar/ordinalityOfUnit:inUnit:forDate:">ordinalityOfUnit:inUnit:forDate:</a>. If you call this method with <code>.Day</code> for the <code>smaller</code> parameter and <code>.Era</code> for the <code>.Larger</code> parameter it will give you a sort of Julian Day number<sup class="footnote-ref" id="fnref:julian"><a href="#fn:julian">1</a></sup> that&rsquo;s easy to use for date arithmetic.</p>
 
 <p>Looking at the code above, you would expect that the closest index when calling <code>let closest = indexOfClosestDate(someDates, toDate: NSDate())</code> would be 1, since today is closest to, well, today. However, if you run the above code in an Xcode Playground somewhere in the GMT timezone whilst DST is in effect you will see that the result is 2. The <code>NSDate()</code> for today is comparing as having an ordinal day number matching tomorrow, not today. What the hell is going on?</p>
 
