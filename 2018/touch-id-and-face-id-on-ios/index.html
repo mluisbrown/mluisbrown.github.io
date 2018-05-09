@@ -363,9 +363,9 @@ SecItemAdd(query as CFDictionary, nil)
 <li><p>the server can then use the public key which was registered for the user to <em>verify</em> the signature of the nonce, indicating that the user has been authenticated on the device, and so then provides a session token. This would substitute the normal username plus password hash being sent for server authentication.</p></li>
 </ul>
 
-<p>Code examples for the various steps above a provided below. These are just examples without any error handling.</p>
+<p>Code examples for the various steps above are provided below. These are just examples without any error handling.</p>
 
-<p>I highly recommend looking at the <a href="https://github.com/trailofbits/SecureEnclaveCrypto">SecureEnclaveCrypto</a> repo in GitHub from where I got most of this code, and on which I based my implemenatation. The repo hasn&rsquo;t been updated for iOS 11 or Swift 4.x unfortunately.
+<p>I highly recommend looking at the <a href="https://github.com/trailofbits/SecureEnclaveCrypto">SecureEnclaveCrypto</a> repo in GitHub from where I got most of this code, and on which I based my implementation. The repo hasn&rsquo;t been updated for iOS 11 or Swift 4.x unfortunately.
 The <a href="https://github.com/agens-no/EllipticCurveKeyPair">EllipticCurveKeyPair</a> repo is also very useful to look at, and is where I got the algorithm for converting a public key into DER and PEM formats.</p>
 
 <h2 id="code-for-secure-enclave-keys-signing-and-encryption">Code for Secure Enclave keys, signing and encryption</h2>
