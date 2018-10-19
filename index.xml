@@ -110,9 +110,10 @@ I&amp;rsquo;m starting over, with a new blog using the Hugo static blogging engi
       <guid>http://michael-brown.net/apps/</guid>
       <description>iOS Apps I’ve developed available in the App Store:
 Memories - Photos taken On This Day 
+Farmácias de Serviço 
+Discontinued apps:
 ThenDo - Easy, Beautiful Lists 
 Interest : Loan Calculator 
-Farmácias de Serviço 
 For questions or support about these apps you can e-mail me at this domain.</description>
     </item>
     
@@ -123,6 +124,18 @@ For questions or support about these apps you can e-mail me at this domain.</des
       
       <guid>http://michael-brown.net/interest/</guid>
       <description>Interest   Retina.configure({force_original_dimensions : false});  try{Typekit.load();}catch(e){} body { font-family: &#34;museo-sans&#34;, sans-serif; font-weight: 100; font-size: 1.1em; } a { color: #CC0000; text-decoration: none; } a:hover { color: #FF0000; text-decoration: underline; } strong { font-weight: 500; color: #CC0000; } #content { width: 320px ; margin-left: auto ; margin-right: auto ; } .left { width: 320px; vertical-align: middle; margin-right: auto; margin-left: auto; text-align: center; } .right { width: 320px; vertical-align: middle; margin-right: auto; margin-left: auto; text-align: center; } .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://michael-brown.net/memories/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/memories/</guid>
+      <description>Memories   (function(i,s,o,g,r,a,m){i[&#39;GoogleAnalyticsObject&#39;]=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,&#39;script&#39;,&#39;//www.google-analytics.com/analytics.js&#39;,&#39;ga&#39;); ga(&#39;create&#39;, &#39;UA-41132207-4&#39;, &#39;auto&#39;); ga(&#39;send&#39;, &#39;pageview&#39;);   Retina.configure({force_original_dimensions : false});      Memories Relive your Photos from the Past
+  &amp;nbsp;      Memories: all the photos you took on this day in years past.
+Features:
+ You remember the Everpix Flashback feature that everyone loved? The one that Picturelife quickly implemented when Everpix was shutdown?</description>
     </item>
     
     <item>
