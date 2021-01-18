@@ -72,7 +72,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/" />
 
@@ -85,21 +85,21 @@
     "@type": "Article",
     "publisher": {
         "@type": "Organization",
-        "name": ,
-        "logo": http://michael-brown.net/images/head.png
+        "name":  null ,
+        "logo": "http://michael-brown.net/images/head.png"
     },
     "author": {
         "@type": "Person",
-        "name": ,
+        "name":  null ,
         
         "image": {
             "@type": "ImageObject",
-            "url": http://michael-brown.net/images/head.png,
+            "url": "http://michael-brown.net/images/head.png",
             "width": 250,
             "height": 250
         }, 
         
-        "url": http://michael-brown.net,
+        "url": "http://michael-brown.net",
         "sameAs": [
             
             
@@ -111,23 +111,23 @@
             
         ]
     },
-    "headline": Using PHLivePhotoView with Auto Layout,
-    "name": Using PHLivePhotoView with Auto Layout,
-    "wordCount": 474,
+    "headline": "Using PHLivePhotoView with Auto Layout",
+    "name": "Using PHLivePhotoView with Auto Layout",
+    "wordCount":  474 ,
     "timeRequired": "PT3M",
     "inLanguage": {
       "@type": "Language",
-      "alternateName": en
+      "alternateName": "en"
     },
-    "url": http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/,
-    "datePublished": 2016-11-03T00:00Z,
-    "dateModified": 2016-11-03T00:00Z,
+    "url": "http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/",
+    "datePublished": "2016-11-03T00:00Z",
+    "dateModified": "2016-11-03T00:00Z",
     
-    "keywords": swift, dev, autolayout,
-    "description": ,
+    "keywords": "swift, dev, autolayout",
+    "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/
+        "@id": "http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/"
     }
 }
     </script>
@@ -235,17 +235,11 @@
 
     <section class="post-content">
       <p>So, I was working on updating my app <a href="http://memories.land">Memories</a> to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for <a href="https://developer.apple.com/reference/photosui/phlivephotoview"><code>PHLivePhotoView</code></a> and thought that this would be fairly straightforward. For Live Photos, I&rsquo;ll just use a <code>PHLivePhotoView</code> instead of a <code>UIImageView</code>.</p>
-
 <p>Well, as is usually the case when a developer says: &ldquo;this looks straightforward, I&rsquo;ll have it done in a couple of hours&rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.</p>
-
 <p>First I wasted an hour or so on a diversion into trying to use Swift 3 generics for implementing a view that could display either a <code>UIImageView</code> or a <code>PHLivePhotoView</code>, and failing miserably. But that&rsquo;s a topic for a different post. Once I got back on track I quickly had the Live Photo view solution implemented. But all I got was a blank screen. The view was invisible. It didn&rsquo;t even show up in Xcode&rsquo;s view debugger. For normal photos using a <code>UIImageView</code> it was all working fine and the only difference for live photos is that the <code>UIImageView</code> and its <code>UIImage</code> is substituted by a <code>PHLivePhotoView</code> with its associated <code>PHLivePhoto</code>.</p>
-
 <p>In order that the photos can be zoomed and panned by the user the image view is inside a <code>UIScrollView</code>. When you&rsquo;re using auto layout as long as you pin the edges of your view to the edges of the scroll view you never have to set the scroll view <code>contentSize</code> and everything &ldquo;just works&rdquo;, as explained in Apple&rsquo;s <a href="https://developer.apple.com/library/content/technotes/tn2154/_index.html#//apple_ref/doc/uid/DTS40013309-CH1-TNTAG3">Technical Note TN2154</a>.</p>
-
 <p>I checked my autolayout constraints in runtime over and over again, everything looked correct and exactly like it is when using a regular <code>UIImageView</code>. But then when I was using the Xcode view debugger I saw a tiny warning that said: &ldquo;scrollable content size is ambiguous&rdquo;. The scroll view auto layout approach mentioned above works with <code>UIImageView</code> because <code>UIImageView</code> returns the size of its <code>image.size</code> for its <code>intrinsicContentSize</code>. The TN above even says so: &ldquo;A simple example would be a large image view, which has an intrinsic content size derived from the size of the image&rdquo;.</p>
-
 <p>But surely <code>PHLivePhotoView</code> also returns its <code>livePhoto.size</code> for <code>intrinsicContentSize</code>? Well, no, it doesn&rsquo;t. It returns a <code>CGSize</code> with each dimension as <code>-1</code>. So that explains it. The scroll view has no way of determining the correct content size. The solution is simply to add width and height auto layout constraints to the <code>PHLivePhotoView</code> equal to the <code>size.width</code> and <code>size.height</code> of the live photo view&rsquo;s <code>livePhoto</code>. Problem solved. All works perfectly now.</p>
-
 <p>I cannot think of any reason why <code>PHLivePhotoView</code> would not behave as <code>UIImageView</code> does and return the size of its underlying image for <code>intrinsicContentSize</code>. Once I&rsquo;ve filed a Radar I&rsquo;ll update this post with it&rsquo;s ID.</p>
 
     </section>
@@ -297,10 +291,6 @@
       onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
       <span class="hidden">Pinterest</span>
   </a>
-  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fmichael-brown.net%2f2016%2fusing-phlivephotoview-with-auto-layout%2f"
-     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-      <span class="hidden">Google+</span>
-  </a>
 </section>
 
 
@@ -329,7 +319,7 @@
       </a>
   
   
-      <a class="read-next-story prev" style="no-cover" href="http://michael-brown.net/2016/podcast-sponsorship---an-experiment/">
+      <a class="read-next-story prev" style="no-cover" href="http://michael-brown.net/2016/podcast-sponsorship-an-experiment/">
           <section class="post">
               <h2>Podcast sponsorship - an experiment</h2>
           </section>

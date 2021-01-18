@@ -1,15 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dev on Michael Brown</title>
+    <title>dev on Michael Brown</title>
     <link>http://michael-brown.net/tags/dev/</link>
-    <description>Recent content in Dev on Michael Brown</description>
+    <description>Recent content in dev on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Sat, 05 May 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://michael-brown.net/tags/dev/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sun, 17 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://michael-brown.net/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Xcode 12 tabs</title>
+      <link>http://michael-brown.net/2021/xcode-12-tabs/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/2021/xcode-12-tabs/</guid>
+      <description>Up until Xcode 12 was released, Xcode tabs were a pretty terrible user experience, especially if you also regularly used an actually good code editor like Sublime Text or Visual Studio Code and knew what a good tabs UX was like. In Xcode tabs you could open the same file in 2 (or more) different tabs, for instance, which is close to useless. Xcode tabs worked pretty much like document tabs in any other application.</description>
+    </item>
     
     <item>
       <title>Touch ID and Face ID on iOS</title>
@@ -29,7 +34,7 @@ There is only a single class, LAContext in the LocalAuthentication framework, so
       <guid>http://michael-brown.net/2017/swift-and-kvo-context-variables/</guid>
       <description>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
 When I ran the app in Xcode this was the exception that was causing the crash:
-Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:)  The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue.</description>
+Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:) The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue.</description>
     </item>
     
     <item>
@@ -44,10 +49,10 @@ Well, as is usually the case when a developer says: &amp;ldquo;this looks straig
     
     <item>
       <title>Podcast sponsorship - an experiment</title>
-      <link>http://michael-brown.net/2016/podcast-sponsorship---an-experiment/</link>
+      <link>http://michael-brown.net/2016/podcast-sponsorship-an-experiment/</link>
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/podcast-sponsorship---an-experiment/</guid>
+      <guid>http://michael-brown.net/2016/podcast-sponsorship-an-experiment/</guid>
       <description>I&amp;rsquo;m an iOS developer in my spare time. You know, on evenings, and weekends. I recently launched an app called Memories. I created the app mainly because it was an app that I wanted to have. I thought that if I wanted to use an app like this (and I use it every day), then maybe other people would like an app like that too. The app replicates a feature found in cloud photo services like Everpix (RIP) and Picturelife that shows you all the photos you took on a certain date (usually today) in previous years.</description>
     </item>
     
@@ -68,8 +73,8 @@ I&amp;rsquo;m going to highlight just one issue that recently caused an embarass
       
       <guid>http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</guid>
       <description>With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become deprecated. The default Xcode fix-it for converting them uses a Range:
-let count = 5 for var index = 0; index &amp;lt; count; index++ { doSomething(index) }  is converted do:
-let count = 5 for index in 0 ..&amp;lt; count { doSomething(index) }  For the vast majority of C-style for loops this will work perfectly well.</description>
+let count = 5 for var index = 0; index &amp;lt; count; index++ { doSomething(index) } is converted do:
+let count = 5 for index in 0 ..&amp;lt; count { doSomething(index) } For the vast majority of C-style for loops this will work perfectly well. But there are cases where using a Range not only won&amp;rsquo;t work as expected but will actually crash!</description>
     </item>
     
   </channel>

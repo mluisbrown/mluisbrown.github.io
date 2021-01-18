@@ -66,7 +66,7 @@
         <link href="http://michael-brown.net/post/index.xml" rel="alternate" type="application/rss+xml" title="Posts &middot; Michael Brown" />
       
     
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="http://michael-brown.net/post/" />
 
@@ -79,16 +79,16 @@
     "@type": "Website",
     "publisher": {
         "@type": "Person",
-        "name": ,
+        "name":  null ,
         
         "image": {
             "@type": "ImageObject",
-            "url": http://michael-brown.net/images/head.png,
+            "url": "http://michael-brown.net/images/head.png",
             "width": 250,
             "height": 250
         },
         
-        "url": http://michael-brown.net,
+        "url": "http://michael-brown.net",
         "sameAs": [
             
             
@@ -100,12 +100,12 @@
             
         ]
     },
-    "url": http://michael-brown.net/,
+    "url": "http://michael-brown.net/",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": http://michael-brown.net/
+        "@id": "http://michael-brown.net/"
     },
-    "description": the only way to do great work is to love what you do
+    "description": "the only way to do great work is to love what you do"
 }
   </script>
     
@@ -208,6 +208,45 @@
 	
 	   <article class="post post">
     <header class="post-header">
+        <h2 class="post-title"><a href="http://michael-brown.net/2021/xcode-12-tabs/">Xcode 12 tabs</a></h2>
+    </header>
+    <section class="post-excerpt">
+        
+            <p>Up until Xcode 12 was released, Xcode tabs were a pretty terrible user experience, especially if you also regularly used an actually good code editor like Sublime Text or Visual Studio Code and knew what a good tabs UX was like. In Xcode tabs you could open the same file in 2 (or more) different tabs, for instance, which is close to useless. Xcode tabs worked pretty much like document tabs in any other application. <a class="read-more" href="http://michael-brown.net/2021/xcode-12-tabs/">&raquo;</a></p>
+        
+    </section>
+    <footer class="post-meta">
+        
+
+        
+            
+            
+
+            
+            <img class="author-thumb" src="http://michael-brown.net/images/head.png" alt="Author image" nopin="nopin" />
+            
+            
+            
+            Michael Brown
+                 
+        
+
+        on
+            
+                <a href="http://michael-brown.net//tags/swift/">#swift</a>,
+            
+                <a href="http://michael-brown.net//tags/dev/">#dev</a>,
+            
+        
+        <time class="post-date" datetime="2021-01-17T00:00:00Z">
+            17 Jan 2021
+        </time>
+    </footer>
+</article>
+
+	
+	   <article class="post post">
+    <header class="post-header">
         <h2 class="post-title"><a href="http://michael-brown.net/2018/touch-id-and-face-id-on-ios/">Touch ID and Face ID on iOS</a></h2>
     </header>
     <section class="post-excerpt">
@@ -254,7 +293,7 @@ There is only a single class, LAContext in the LocalAuthentication framework, so
         
             <p>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
 When I ran the app in Xcode this was the exception that was causing the crash:
-Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:)  The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue. <a class="read-more" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">&raquo;</a></p>
+Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:) The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue. <a class="read-more" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">
@@ -331,11 +370,11 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
 	
 	   <article class="post post">
     <header class="post-header">
-        <h2 class="post-title"><a href="http://michael-brown.net/2016/podcast-sponsorship---an-experiment/">Podcast sponsorship - an experiment</a></h2>
+        <h2 class="post-title"><a href="http://michael-brown.net/2016/podcast-sponsorship-an-experiment/">Podcast sponsorship - an experiment</a></h2>
     </header>
     <section class="post-excerpt">
         
-            <p>I&rsquo;m an iOS developer in my spare time. You know, on evenings, and weekends. I recently launched an app called Memories. I created the app mainly because it was an app that I wanted to have. I thought that if I wanted to use an app like this (and I use it every day), then maybe other people would like an app like that too. The app replicates a feature found in cloud photo services like Everpix (RIP) and Picturelife that shows you all the photos you took on a certain date (usually today) in previous years. <a class="read-more" href="http://michael-brown.net/2016/podcast-sponsorship---an-experiment/">&raquo;</a></p>
+            <p>I&rsquo;m an iOS developer in my spare time. You know, on evenings, and weekends. I recently launched an app called Memories. I created the app mainly because it was an app that I wanted to have. I thought that if I wanted to use an app like this (and I use it every day), then maybe other people would like an app like that too. The app replicates a feature found in cloud photo services like Everpix (RIP) and Picturelife that shows you all the photos you took on a certain date (usually today) in previous years. <a class="read-more" href="http://michael-brown.net/2016/podcast-sponsorship-an-experiment/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">
@@ -365,46 +404,6 @@ Well, as is usually the case when a developer says: &ldquo;this looks straightfo
         
         <time class="post-date" datetime="2016-06-16T00:00:00Z">
             16 Jun 2016
-        </time>
-    </footer>
-</article>
-
-	
-	   <article class="post post">
-    <header class="post-header">
-        <h2 class="post-title"><a href="http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/">Comparing Dates, whilst ignoring the time</a></h2>
-    </header>
-    <section class="post-excerpt">
-        
-            <p>Comparing dates is one of the most common things you have to do as a developer of almost any type of software. At first glance it would seem to be something almost trivially easy. What could possibly go wrong? Well, turns out, quite a lot!
-I&rsquo;m going to highlight just one issue that recently caused an embarassing bug in my app Memories. It involved just a simple date comparison, ignoring time, and without crossing timezones. <a class="read-more" href="http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/">&raquo;</a></p>
-        
-    </section>
-    <footer class="post-meta">
-        
-
-        
-            
-            
-
-            
-            <img class="author-thumb" src="http://michael-brown.net/images/head.png" alt="Author image" nopin="nopin" />
-            
-            
-            
-            Michael Brown
-                 
-        
-
-        on
-            
-                <a href="http://michael-brown.net//tags/swift/">#swift</a>,
-            
-                <a href="http://michael-brown.net//tags/dev/">#dev</a>,
-            
-        
-        <time class="post-date" datetime="2016-04-24T00:00:00Z">
-            24 Apr 2016
         </time>
     </footer>
 </article>

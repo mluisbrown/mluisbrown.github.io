@@ -13,13 +13,13 @@
 
 
 
-<meta name="twitter:title" content="Swift"/>
+<meta name="twitter:title" content="swift"/>
 <meta name="twitter:description" content="the only way to do great work is to love what you do"/>
 <meta name="twitter:site" content="@mluisbrown"/>
 
 
 
-  	<meta property="og:title" content="Swift &middot; Michael Brown" />
+  	<meta property="og:title" content="swift &middot; Michael Brown" />
   	<meta property="og:site_name" content="Michael Brown" />
   	<meta property="og:url" content="http://michael-brown.net/tags/swift/" />
 
@@ -34,7 +34,7 @@
     <meta property="og:description" content="the only way to do great work is to love what you do" />
     
 
-    <title>Swift &middot; Michael Brown</title>
+    <title>swift &middot; Michael Brown</title>
 
     
     <meta name="description" content="the only way to do great work is to love what you do" />
@@ -63,10 +63,10 @@
           <link href="http://michael-brown.net/index.xml" rel="alternate" type="application/rss+xml" title="Michael Brown" />
       
       
-        <link href="http://michael-brown.net/tags/swift/index.xml" rel="alternate" type="application/rss+xml" title="Swift &middot; Michael Brown" />
+        <link href="http://michael-brown.net/tags/swift/index.xml" rel="alternate" type="application/rss+xml" title="swift &middot; Michael Brown" />
       
     
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="http://michael-brown.net/tags/swift/" />
 
@@ -79,16 +79,16 @@
     "@type": "Website",
     "publisher": {
         "@type": "Person",
-        "name": ,
+        "name":  null ,
         
         "image": {
             "@type": "ImageObject",
-            "url": http://michael-brown.net/images/head.png,
+            "url": "http://michael-brown.net/images/head.png",
             "width": 250,
             "height": 250
         },
         
-        "url": http://michael-brown.net,
+        "url": "http://michael-brown.net",
         "sameAs": [
             
             
@@ -100,12 +100,12 @@
             
         ]
     },
-    "url": http://michael-brown.net/,
+    "url": "http://michael-brown.net/",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": http://michael-brown.net/
+        "@id": "http://michael-brown.net/"
     },
-    "description": the only way to do great work is to love what you do
+    "description": "the only way to do great work is to love what you do"
 }
   </script>
     
@@ -183,7 +183,7 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">Swift</h1>
+            <h1 class="page-title">swift</h1>
             <h2 class="page-description">
                 
             </h2>
@@ -197,11 +197,52 @@
 	<div class="extra-pagination inner">
     <nav class="pagination" role="navigation">
 	
-	<span class="page-number">Page 1 of 1</span>
+	<span class="page-number">Page 1 of 2</span>
+	
+	    <a class="older-posts" href="http://michael-brown.net/tags/swift/page/2/">Older Posts &rarr;</a>
 	
 </nav>
 
 	</div>
+
+	
+	   <article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="http://michael-brown.net/2021/xcode-12-tabs/">Xcode 12 tabs</a></h2>
+    </header>
+    <section class="post-excerpt">
+        
+            <p>Up until Xcode 12 was released, Xcode tabs were a pretty terrible user experience, especially if you also regularly used an actually good code editor like Sublime Text or Visual Studio Code and knew what a good tabs UX was like. In Xcode tabs you could open the same file in 2 (or more) different tabs, for instance, which is close to useless. Xcode tabs worked pretty much like document tabs in any other application. <a class="read-more" href="http://michael-brown.net/2021/xcode-12-tabs/">&raquo;</a></p>
+        
+    </section>
+    <footer class="post-meta">
+        
+
+        
+            
+            
+
+            
+            <img class="author-thumb" src="http://michael-brown.net/images/head.png" alt="Author image" nopin="nopin" />
+            
+            
+            
+            Michael Brown
+                 
+        
+
+        on
+            
+                <a href="http://michael-brown.net//tags/swift/">#swift</a>,
+            
+                <a href="http://michael-brown.net//tags/dev/">#dev</a>,
+            
+        
+        <time class="post-date" datetime="2021-01-17T00:00:00Z">
+            17 Jan 2021
+        </time>
+    </footer>
+</article>
 
 	
 	   <article class="post post">
@@ -252,7 +293,7 @@ There is only a single class, LAContext in the LocalAuthentication framework, so
         
             <p>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
 When I ran the app in Xcode this was the exception that was causing the crash:
-Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:)  The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue. <a class="read-more" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">&raquo;</a></p>
+Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:) The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue. <a class="read-more" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">
@@ -367,51 +408,12 @@ I&rsquo;m going to highlight just one issue that recently caused an embarassing 
 </article>
 
 	
-	   <article class="post post">
-    <header class="post-header">
-        <h2 class="post-title"><a href="http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/">Using stride to convert C-style for loops to Swift 2.2</a></h2>
-    </header>
-    <section class="post-excerpt">
-        
-            <p>With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become deprecated. The default Xcode fix-it for converting them uses a Range:
-let count = 5 for var index = 0; index &lt; count; index++ { doSomething(index) }  is converted do:
-let count = 5 for index in 0 ..&lt; count { doSomething(index) }  For the vast majority of C-style for loops this will work perfectly well. <a class="read-more" href="http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/">&raquo;</a></p>
-        
-    </section>
-    <footer class="post-meta">
-        
-
-        
-            
-            
-
-            
-            <img class="author-thumb" src="http://michael-brown.net/images/head.png" alt="Author image" nopin="nopin" />
-            
-            
-            
-            Michael Brown
-                 
-        
-
-        on
-            
-                <a href="http://michael-brown.net//tags/swift/">#swift</a>,
-            
-                <a href="http://michael-brown.net//tags/dev/">#dev</a>,
-            
-        
-        <time class="post-date" datetime="2016-03-08T00:00:00Z">
-            8 Mar 2016
-        </time>
-    </footer>
-</article>
-
-	
 
 	<nav class="pagination" role="navigation">
 	
-	<span class="page-number">Page 1 of 1</span>
+	<span class="page-number">Page 1 of 2</span>
+	
+	    <a class="older-posts" href="http://michael-brown.net/tags/swift/page/2/">Older Posts &rarr;</a>
 	
 </nav>
 

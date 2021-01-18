@@ -70,7 +70,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="http://michael-brown.net/2018/touch-id-and-face-id-on-ios/" />
 
@@ -83,21 +83,21 @@
     "@type": "Article",
     "publisher": {
         "@type": "Organization",
-        "name": ,
-        "logo": http://michael-brown.net/images/head.png
+        "name":  null ,
+        "logo": "http://michael-brown.net/images/head.png"
     },
     "author": {
         "@type": "Person",
-        "name": ,
+        "name":  null ,
         
         "image": {
             "@type": "ImageObject",
-            "url": http://michael-brown.net/images/head.png,
+            "url": "http://michael-brown.net/images/head.png",
             "width": 250,
             "height": 250
         }, 
         
-        "url": http://michael-brown.net,
+        "url": "http://michael-brown.net",
         "sameAs": [
             
             
@@ -109,23 +109,23 @@
             
         ]
     },
-    "headline": Touch ID and Face ID on iOS,
-    "name": Touch ID and Face ID on iOS,
-    "wordCount": 2295,
+    "headline": "Touch ID and Face ID on iOS",
+    "name": "Touch ID and Face ID on iOS",
+    "wordCount":  2295 ,
     "timeRequired": "PT11M",
     "inLanguage": {
       "@type": "Language",
-      "alternateName": en
+      "alternateName": "en"
     },
-    "url": http://michael-brown.net/2018/touch-id-and-face-id-on-ios/,
-    "datePublished": 2018-05-05T00:00Z,
-    "dateModified": 2018-05-05T00:00Z,
+    "url": "http://michael-brown.net/2018/touch-id-and-face-id-on-ios/",
+    "datePublished": "2018-05-05T00:00Z",
+    "dateModified": "2018-05-05T00:00Z",
     
-    "keywords": swift, dev,
-    "description": ,
+    "keywords": "swift, dev",
+    "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": http://michael-brown.net/2018/touch-id-and-face-id-on-ios/
+        "@id": "http://michael-brown.net/2018/touch-id-and-face-id-on-ios/"
     }
 }
     </script>
@@ -230,67 +230,38 @@
     </header>
 
     <section class="post-content">
-      
-
-<h2 id="introduction">Introduction</h2>
-
+      <h2 id="introduction">Introduction</h2>
 <p>Adding support for Touch ID and Face ID to your app is not always completely straightforward, especially given that the documentation from Apple on the APIs is somewhat sparse and in some cases incorrect. I recently added Face ID and Touch ID support to my company&rsquo;s app and I thought it would be helpful to document what I found.</p>
-
 <p>There is only a single class, <a href="https://developer.apple.com/documentation/localauthentication/lacontext">LAContext</a> in the <a href="https://developer.apple.com/documentation/localauthentication/">LocalAuthentication</a> framework, so it&rsquo;s surprising how complex it can get.</p>
-
 <p>The most naive implementation of a biometric (Touch ID or Face ID) authentication request is as in Apple&rsquo;s example:</p>
-
-<script src="https://gist.github.com/mluisbrown/2979bb69e81d9ba4eba3f7c15abc9fa4.js"></script>
-
+<!-- raw HTML omitted -->
 <h2 id="what-is-actually-supported">What is actually supported?</h2>
-
 <p>However, that will almost certainly be insufficient for a production app. For a start, before you even get as far as attempting a local authentication, you will probably want to know which form (Touch ID or Face ID, or neither) is available, so that you can change your UI appropriately. Apple <a href="https://developer.apple.com/ios/human-interface-guidelines/user-interaction/authentication/">recommends</a> that you <em>&ldquo;Don&rsquo;t reference Touch ID on a device that supports Face ID [and] don&rsquo;t reference Face ID on a device that supports Touch ID&rdquo;</em>.</p>
-
 <p>You can use the <a href="https://developer.apple.com/documentation/localauthentication/lacontext/2867583-biometrytype"><code>biometryType</code></a> property of <code>LAContext</code> which will return an <code>LABiometryType</code> of either <code>none</code>, <code>faceID</code>, or <code>touchID</code>. Be aware that the <code>none</code> case was only added in iOS 11.2. Since you will already be doing <code>if #available</code> checks for iOS 10 (Touch ID only) and iOS 11, adding another check for iOS 11.2 just to see if you can use <code>none</code> is a real pain. I opted to just use <code>default</code> in my switch on the biometry type to handle <code>none</code>. In the documentation for <code>biometryType</code> there is an important error that Apple <a href="http://www.openradar.me/36064151">knows about</a> but has yet to fix. It states:</p>
-
 <blockquote>
 <p>This property is only set when canEvaluatePolicy(_:error:) succeeds for a biometric policy. The default value is LABiometryNone.</p>
 </blockquote>
-
 <p>That is incorrect. Once you call <code>canEvaluatePolicy</code> on a context, the <code>biometryType</code> <strong>is</strong> set, regardless if the call failed or succeeded. That&rsquo;s important to know, because if what the docs state were true, if the call fails it would be impossible to tell if it failed because the device doesn&rsquo;t support Touch ID or Face ID, or because they are disabled, not enrolled or locked out. You might have UI (eg in a settings pane) which references Touch ID or Face ID even if they are currently disabled, and you want to know <em>which</em> of them it should reference.</p>
-
 <p>I ended up creating my own abstraction to make it easier to track the full state of biometry support on the device and to limit all OS version checks to a single place:</p>
-
-<script src="https://gist.github.com/mluisbrown/70ef39d99f9801e3e532686f006053d2.js"></script>
-
+<!-- raw HTML omitted -->
 <p>I am using <code>notAvailable</code> to cover both the &ldquo;not available&rdquo; and &ldquo;not enrolled&rdquo; states that the API can return. Incidentally, if the <code>LAError.Code</code> returned from the API is <code>biometryNotAvailable</code> that includes the situation where Face ID has been disabled by the user for your app in Settings.app.</p>
-
 <p>I created a <code>BiometricAuth</code> class to deal with everything related to local authentication. Below is the implementation of the <code>supportedBiometry</code> calculated property which returns a <code>BiometrySupport</code> enum:</p>
-
-<script src="https://gist.github.com/mluisbrown/5503dd94fa71a60a55e33f3cf90b1dce.js"></script>
-
+<!-- raw HTML omitted -->
 <p>As you can see, between OS version checks and checking both success and error conditions, just getting all the information about the supported biometry on the device is quite a bit more complex than a single API call!</p>
-
 <h2 id="authenticating">Authenticating</h2>
-
 <p>Ok, so you know what&rsquo;s supported, now how do you actually authenticate? First, just so it&rsquo;s clear, you should only attempt biometric authentication if you know it&rsquo;s available. You don&rsquo;t need to call <code>evaluatePolicy</code> using the same <code>LAContext</code> on which <code>canEvaluatePolicy</code> was called (as in the Apple example), but you should call it fairly soon after to minimize that chance that circumstances have changed.</p>
-
 <p>To invoke the biometric authentication, create an <code>LAContext</code> and call <a href="https://developer.apple.com/documentation/localauthentication/lacontext/1514176-evaluatepolicy"><code>evaluatePolicy(_:localizedReason:reply:)</code></a>. The <code>localizedReason</code> parameter is displayed in the Touch ID alert subtitle to tell the user why you&rsquo;re requesting authentication. It&rsquo;s not used for Face ID as far as I can tell, as Face ID does not display an alert, it just &ldquo;happens&rdquo;. If you want to provide the user with a fallback method of authentication (eg a password or a PIN code), you should set the <code>localizedFallbackTitle</code> on the <code>LAContext</code> before calling <code>evaulatePolicy</code>. If you don&rsquo;t set it (ie it remains <code>nil</code>), the default is &ldquo;Enter password&rdquo;, which may not be appropriate for your app. In another bit of questionable (and undocumented) API design by Apple, if you don&rsquo;t want a fallback option to appear at all, you have to set <code>localizedFallbackTitle</code> to <code>&quot;&quot;</code> 🙈. When testing this, be aware that the fallback option only appears once Touch ID or Face ID has failed at least once. If the user taps the fallback option, the <code>LAError.Code</code> returned in the <code>Error</code> of the <code>reply</code> handler will be <code>LAError.userFallback</code>.</p>
-
 <p>The call to <code>evaluatePolicy</code> is obviously asynchronous, so you have to handle the response in the <code>reply</code> closure. The thread on which this closure is called is not the main thread, so make sure that you <code>DispatchQueue.main.async</code> the outcome to update your UI as appropriate (if you&rsquo;re using a <a href="https://github.com/ReactiveCocoa/ReactiveSwift">reactive framework</a> this is so much easier 😛).</p>
-
 <h2 id="what-are-you-authenticating">What are you authenticating?</h2>
-
 <p>When integrating Touch ID and Face ID, you need to think about what it is that you are actually protecting and how, because if you were dependent on the user&rsquo;s password for, say, making an API call to a server to get an auth token, then you won&rsquo;t have that password if you&rsquo;re using biometric authentication. There are a couple of options:</p>
-
 <ul>
 <li>You could store the password (well, a hash of it) in the keychain and use that.</li>
 <li>For APIs, you could store a persistent auth token in the keychain, and use that. This requires that the user authenticates using their password when you&rsquo;re enabling biometric authentication in your app, so that you have a token to store.</li>
 </ul>
-
 <p>For many apps this may be sufficiently secure. However, with Jailbreak, it&rsquo;s trivial to read the contents of the keychain and / or patch your app to bypass the <code>evaluatePolicy</code> calls and act as if they had always succeeded. A successful Jailbreak, whilst maintaining the user&rsquo;s data, requires the user&rsquo;s device passcode. Also, if an attacker has the device passcode, they can register their own finger for Touch ID or reset Face ID with their own face, and then access your app that way. For applications with sensitive data such as financial or health, there are ways to prevent both the Jailbreak and the &ldquo;re-register&rdquo; attacks.</p>
-
 <h2 id="restricting-keychain-item-access-to-touch-id-and-face-id">Restricting keychain item access to Touch ID and Face ID</h2>
-
 <p>When storing keys or tokens in the keychain, you can restrict them to be only accessible using Touch ID or Face ID by creating a <a href="https://developer.apple.com/documentation/security/secaccesscontrol"><code>SecAccessControl</code></a> with the <code>kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</code> protection and the <code>touchIDCurrentSet</code> or <code>touchIDAny</code> flag (<code>touchIDCurrentSet</code> restricts access to the currently registered Touch ID fingerprints or the currently registered Face ID face):</p>
-
 <p>NOTE: <code>touchIDCurrentSet</code> and <code>touchIDAny</code> have been deprecated in iOS 11.3 in favour of <code>biometryCurrentSet</code> and <code>biometryAny</code>.</p>
-
 <pre><code>// create an Access Control
 func createAccessControl() -&gt; SecAccessControl? {
     var accessControlError: Unmanaged&lt;CFError&gt;?
@@ -304,10 +275,7 @@ func createAccessControl() -&gt; SecAccessControl? {
 
     return accessControl
 }
-</code></pre>
-
-<p>And then passing that access control as the value for the <code>kSecAttrAccessControl</code> key when calling <code>SecItemAdd</code>:</p>
-
+</code></pre><p>And then passing that access control as the value for the <code>kSecAttrAccessControl</code> key when calling <code>SecItemAdd</code>:</p>
 <pre><code>let query: [String: Any] = [
     kSecClass as String: kSecClassGenericPassword,
     kSecAttrService as String: &quot;my service name&quot;,
@@ -317,108 +285,67 @@ func createAccessControl() -&gt; SecAccessControl? {
     ]
 
 SecItemAdd(query as CFDictionary, nil)
-</code></pre>
-
-<p>Incidentally, if you&rsquo;re storing data in the keychain with Touch ID / Face ID access control restrictions, you don&rsquo;t actually <em>need</em> to call <code>LAContext.evaluatePolicy</code> at all. Just attempting to access them using <code>SecItemCopyMatching</code> will automatically create an <code>LAContext</code> and invoke the biometric authentication process for you (synchronously). However, I wouldn&rsquo;t recommend that, as it not only gives you less control but it make the thread calling <code>SecItemCopyMatching</code> block during authentication. What I recommend is:</p>
-
+</code></pre><p>Incidentally, if you&rsquo;re storing data in the keychain with Touch ID / Face ID access control restrictions, you don&rsquo;t actually <em>need</em> to call <code>LAContext.evaluatePolicy</code> at all. Just attempting to access them using <code>SecItemCopyMatching</code> will automatically create an <code>LAContext</code> and invoke the biometric authentication process for you (synchronously). However, I wouldn&rsquo;t recommend that, as it not only gives you less control but it make the thread calling <code>SecItemCopyMatching</code> block during authentication. What I recommend is:</p>
 <ol>
 <li>Create an <code>LAContext</code></li>
 <li>Call <code>evaluatePolicy</code> on it</li>
 <li>If successful, pass the context as the value for the <code>kSecUseAuthenticationContext</code> key in the query dictionary passed to <code>SecItemCopyMatching</code>.</li>
 </ol>
-
 <h2 id="restricting-to-the-currently-registered-biometrics">Restricting to the currently registered biometrics</h2>
-
 <p><code>LAContext</code> has a property <a href="https://developer.apple.com/documentation/localauthentication/lacontext/1514150-evaluatedpolicydomainstate"><code>evaluatedPolicyDomainState</code></a>, which is an opaque <code>Data?</code> object that is set whenever <code>canEvaluatePolicy</code> or <code>evaluatePolicy</code> succeeds, otherwise it is <code>nil</code>. If any new fingerprints are added to Touch ID, or Face ID is reset and a new (or even the same) face is added, then the <code>evaluatedPolicyDomainState</code> data will change.</p>
-
 <p>So, in order to detect such a change, you need to store this value after a successful call to <code>evaluatePolicy</code>. You can store it in <code>UserDefaults</code>, there is no need to store it securely. After that, when you call <code>canEvaluatePolicy</code>, compare the value in the context against the value you stored previously (you can just use <code>==</code> comparison of the <code>Data</code> objects). If they are different, it means the registered biometric data has changed, and you can then force the user to provide their password again before allowing Touch ID or Face ID to be used again.</p>
-
 <p>The <code>touchIDCurrentSet</code> <code>SecAccessControl</code> flag as shown above also restricts access to keychain items to the biometrics registered at the time the item was added to the keychain.</p>
-
 <p>This will solve the situation where the attacker has the user&rsquo;s device passcode, but it will not protect against Jailbreak, where all these checks can be bypassed, and where the keychain can be decrypted. But that can also be solved.</p>
-
 <h2 id="using-the-secure-enclave-for-the-highest-security">Using the Secure Enclave for the highest security</h2>
-
 <p>Even restricting keychain items to biometric access control, and restricting biometric authentication to the currently registered biometric data set won&rsquo;t help you if a device is jailbroken, because on a jailbroken device the entire contents of the keychain can be dumped out in plain text, regardless of access restrictions. The only really secure storage on an iOS device is the Secure Enclave, and only devices with Touch ID or Face ID have it. It is where the biometric data is stored. The good news is that as of iOS 9 Apple introduced an API for apps to store &ldquo;data&rdquo; in the Secure Enclave. However, since allowing user apps the ability to read anything from the Secure Enclave would make it also susceptible to jailbreak attacks, the caveat is that anything you store in the Secure Enclave can never be read back! Fortunateley, that&rsquo;s not as utterly useless as it might appear.</p>
-
 <p>In fact, the <strong>only</strong> data that user apps can store in the Secure Enclave is the private key of a 256-bit elliptic curve public / private key pair. The key is generated in the Secure Enclave itself, and it never leaves there. All you can access is the public key and a reference to the private key, which can only be obtained after a successful biometric authentication.</p>
-
 <h3 id="how-can-this-be-used">How can this be used?</h3>
-
 <p>When the user chooses to use biometric auth, create a public / private key pair for storing in the Secure Enclave, and store the public key in the keychain for later use. Then the public key can be used for either:</p>
-
 <h4 id="encryption">Encryption</h4>
-
 <p>User data can be encrypted using the public key, secure in the knowledge that it can only be decrypted by the Secure Enclave which contains the matching private key, and which can only be accessed after a successful biometric authentication.</p>
-
 <h4 id="signing">Signing</h4>
-
 <p>The public key can be sent to a server and associated with a user and device. Subsequently, in order to get a session token from the server:</p>
-
 <ul>
-<li><p>the app makes a request to the server for a string of random data (a <a href="https://en.wikipedia.org/wiki/Cryptographic_nonce">nonce</a>).</p></li>
-
-<li><p>after a successful biometric authentication, the app <em>signs</em> the nonce using the private key in the Secure Enclave, and sends the signed nonce back to the server.</p></li>
-
-<li><p>the server can then use the public key which was registered for the user to <em>verify</em> the signature of the nonce, indicating that the user has been authenticated on the device, and so then provides a session token. This would substitute the normal username plus password hash being sent for server authentication.</p></li>
+<li>
+<p>the app makes a request to the server for a string of random data (a <a href="https://en.wikipedia.org/wiki/Cryptographic_nonce">nonce</a>).</p>
+</li>
+<li>
+<p>after a successful biometric authentication, the app <em>signs</em> the nonce using the private key in the Secure Enclave, and sends the signed nonce back to the server.</p>
+</li>
+<li>
+<p>the server can then use the public key which was registered for the user to <em>verify</em> the signature of the nonce, indicating that the user has been authenticated on the device, and so then provides a session token. This would substitute the normal username plus password hash being sent for server authentication.</p>
+</li>
 </ul>
-
 <p>Code examples for the various steps above are provided below. These are just examples without any error handling.</p>
-
 <p>I highly recommend looking at the <a href="https://github.com/trailofbits/SecureEnclaveCrypto">SecureEnclaveCrypto</a> repo in GitHub from where I got most of this code, and on which I based my implementation. The repo hasn&rsquo;t been updated for iOS 11 or Swift 4.x unfortunately.
 The <a href="https://github.com/agens-no/EllipticCurveKeyPair">EllipticCurveKeyPair</a> repo is also very useful to look at, and is where I got the algorithm for converting a public key into DER and PEM formats.</p>
-
 <h2 id="code-for-secure-enclave-keys-signing-and-encryption">Code for Secure Enclave keys, signing and encryption</h2>
-
 <h3 id="create-a-key-pair-and-store-the-public-key">Create a key pair and store the public key</h3>
-
-<script src="https://gist.github.com/mluisbrown/3e0611e5ddd9ed7875c183ca7b716a6b.js"></script>
-
+<!-- raw HTML omitted -->
 <ul>
 <li><code>kSecAttrKeyTypeECSECPrimeRandom</code> is the Elliptic Curve key type used by the Secure Enclave. It is equivalent to the <code>prime256v1</code> key type in OpenSSL.</li>
 <li><code>kSecAttrTokenIDSecureEnclave</code> indicates the key is stored in the Secure Enclave.</li>
 </ul>
-
 <h3 id="obtain-the-public-key">Obtain the public key</h3>
-
-<script src="https://gist.github.com/mluisbrown/62ba0141e1e3e9f99182e7b85f2fd3bd.js"></script>
-
+<!-- raw HTML omitted -->
 <p>To get the <code>SecKey</code> reference from the <code>CFDictionary</code> of the public key above:</p>
-
 <pre><code>let converted = publicKey as! [String: Any]
 let keyRef = converted[kSecValueRef as String] as! SecKey
-</code></pre>
-
-<p>To get the actual key data from the public key:</p>
-
+</code></pre><p>To get the actual key data from the public key:</p>
 <pre><code>let converted = publicKey as! [String: Any]
 let data = converted[kSecValueData as String] as! Data
-</code></pre>
-
-<p>If you&rsquo;re sending this key data to a server, you&rsquo;ll almost certainly want it in the DER or PEM formats that OpenSSL understands:</p>
-
-<script src="https://gist.github.com/mluisbrown/f3cdb3d0e620679d155caba2d266c38e.js"></script>
-
+</code></pre><p>If you&rsquo;re sending this key data to a server, you&rsquo;ll almost certainly want it in the DER or PEM formats that OpenSSL understands:</p>
+<!-- raw HTML omitted -->
 <h3 id="obtain-a-private-key-reference">Obtain a private key reference</h3>
-
 <p>You will need to provide an <code>LAContext</code> on which <code>evaluatePolicy</code> has succeeded. If you don&rsquo;t, one will be created for you and used. The <code>kSecUseOperationPrompt</code> is not used if you pass a context where you have already authenticated.</p>
-
-<script src="https://gist.github.com/mluisbrown/06063646c27a7ac5c4222d4a7dea940b.js"></script>
-
+<!-- raw HTML omitted -->
 <h3 id="sign-some-data">Sign some data</h3>
-
-<script src="https://gist.github.com/mluisbrown/7da7c905e1835b3da0ad5f868d98a5ae.js"></script>
-
+<!-- raw HTML omitted -->
 <h3 id="encrypt-some-data">Encrypt some data</h3>
-
-<script src="https://gist.github.com/mluisbrown/c489d31654194b3adccc655e998443af.js"></script>
-
+<!-- raw HTML omitted -->
 <h3 id="decrypt-some-data">Decrypt some data</h3>
-
-<script src="https://gist.github.com/mluisbrown/dacc6c96103baa640ad1fc01a3c53801.js"></script>
-
+<!-- raw HTML omitted -->
 <h2 id="conclusion">Conclusion</h2>
-
 <p>I hope I&rsquo;ve been able to shed some light on an area of iOS development that isn&rsquo;t particularly well documented, and that has a lot more nuances and edge cases than might appear at first sight.</p>
 
     </section>
@@ -470,10 +397,6 @@ let data = converted[kSecValueData as String] as! Data
       onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
       <span class="hidden">Pinterest</span>
   </a>
-  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=http%3a%2f%2fmichael-brown.net%2f2018%2ftouch-id-and-face-id-on-ios%2f"
-     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-      <span class="hidden">Google+</span>
-  </a>
 </section>
 
 
@@ -493,6 +416,13 @@ let data = converted[kSecValueData as String] as! Data
 
 
   <aside class="read-next">
+  
+      <a class="read-next-story" style="no-cover" href="http://michael-brown.net/2021/xcode-12-tabs/">
+          <section class="post">
+              <h2>Xcode 12 tabs</h2>
+              
+          </section>
+      </a>
   
   
       <a class="read-next-story prev" style="no-cover" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/">

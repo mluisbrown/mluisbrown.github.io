@@ -1,6 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://michael-brown.net/tags/dev/</loc>
+    <lastmod>2021-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/</loc>
+    <lastmod>2021-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/post/</loc>
+    <lastmod>2021-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/swift/</loc>
+    <lastmod>2021-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/</loc>
+    <lastmod>2021-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/2021/xcode-12-tabs/</loc>
+    <lastmod>2021-01-17T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>http://michael-brown.net/2018/touch-id-and-face-id-on-ios/</loc>
@@ -13,12 +43,27 @@
   </url>
   
   <url>
+    <loc>http://michael-brown.net/tags/autolayout/</loc>
+    <lastmod>2016-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</loc>
     <lastmod>2016-11-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://michael-brown.net/2016/podcast-sponsorship---an-experiment/</loc>
+    <loc>http://michael-brown.net/tags/business/</loc>
+    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/podcast/</loc>
+    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/2016/podcast-sponsorship-an-experiment/</loc>
     <lastmod>2016-06-16T00:00:00+00:00</lastmod>
   </url>
   
@@ -33,7 +78,27 @@
   </url>
   
   <url>
+    <loc>http://michael-brown.net/tags/apple/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://michael-brown.net/2016/apple-vs-the-fbi/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/encryption/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/ios/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://michael-brown.net/tags/security/</loc>
     <lastmod>2016-03-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -43,7 +108,7 @@
   </url>
   
   <url>
-    <loc>http://michael-brown.net/2016/starting-over/</loc>
+    <loc>http://michael-brown.net/tags/blog/</loc>
     <lastmod>2016-02-25T00:00:00+00:00</lastmod>
   </url>
   
@@ -53,104 +118,17 @@
   </url>
   
   <url>
-    <loc>http://michael-brown.net/interest/</loc>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/memories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/thendo/</loc>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/apple/</loc>
-    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/autolayout/</loc>
-    <lastmod>2016-11-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/blog/</loc>
+    <loc>http://michael-brown.net/tags/meta/</loc>
     <lastmod>2016-02-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://michael-brown.net/tags/business/</loc>
-    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://michael-brown.net/2016/starting-over/</loc>
+    <lastmod>2016-02-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://michael-brown.net/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/dev/</loc>
-    <lastmod>2018-05-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/encryption/</loc>
-    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/ios/</loc>
-    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/meta/</loc>
-    <lastmod>2016-02-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/</loc>
-    <lastmod>2018-05-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/podcast/</loc>
-    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/post/</loc>
-    <lastmod>2018-05-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/security/</loc>
-    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/swift/</loc>
-    <lastmod>2018-05-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael-brown.net/tags/</loc>
-    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

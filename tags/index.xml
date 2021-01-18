@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Michael Brown</title>
@@ -6,22 +6,27 @@
     <description>Recent content in Tags on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Tue, 01 Mar 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://michael-brown.net/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 17 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://michael-brown.net/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Apple</title>
-      <link>http://michael-brown.net/tags/apple/</link>
-      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
+      <title>dev</title>
+      <link>http://michael-brown.net/tags/dev/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/tags/apple/</guid>
+      <guid>http://michael-brown.net/tags/dev/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Autolayout</title>
+      <title>swift</title>
+      <link>http://michael-brown.net/tags/swift/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>autolayout</title>
       <link>http://michael-brown.net/tags/autolayout/</link>
       <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
       
@@ -30,16 +35,7 @@
     </item>
     
     <item>
-      <title>Blog</title>
-      <link>http://michael-brown.net/tags/blog/</link>
-      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://michael-brown.net/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Business</title>
+      <title>business</title>
       <link>http://michael-brown.net/tags/business/</link>
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
       
@@ -48,43 +44,7 @@
     </item>
     
     <item>
-      <title>Dev</title>
-      <link>http://michael-brown.net/tags/dev/</link>
-      <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://michael-brown.net/tags/dev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Encryption</title>
-      <link>http://michael-brown.net/tags/encryption/</link>
-      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://michael-brown.net/tags/encryption/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ios</title>
-      <link>http://michael-brown.net/tags/ios/</link>
-      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://michael-brown.net/tags/ios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Meta</title>
-      <link>http://michael-brown.net/tags/meta/</link>
-      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>http://michael-brown.net/tags/meta/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Podcast</title>
+      <title>podcast</title>
       <link>http://michael-brown.net/tags/podcast/</link>
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
       
@@ -93,7 +53,34 @@
     </item>
     
     <item>
-      <title>Security</title>
+      <title>apple</title>
+      <link>http://michael-brown.net/tags/apple/</link>
+      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/tags/apple/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>encryption</title>
+      <link>http://michael-brown.net/tags/encryption/</link>
+      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/tags/encryption/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ios</title>
+      <link>http://michael-brown.net/tags/ios/</link>
+      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
       <link>http://michael-brown.net/tags/security/</link>
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
@@ -102,11 +89,20 @@
     </item>
     
     <item>
-      <title>Swift</title>
-      <link>http://michael-brown.net/tags/swift/</link>
-      <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
+      <title>blog</title>
+      <link>http://michael-brown.net/tags/blog/</link>
+      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/tags/swift/</guid>
+      <guid>http://michael-brown.net/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>meta</title>
+      <link>http://michael-brown.net/tags/meta/</link>
+      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://michael-brown.net/tags/meta/</guid>
       <description></description>
     </item>
     

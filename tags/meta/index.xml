@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Meta on Michael Brown</title>
+    <title>meta on Michael Brown</title>
     <link>http://michael-brown.net/tags/meta/</link>
-    <description>Recent content in Meta on Michael Brown</description>
+    <description>Recent content in meta on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Thu, 25 Feb 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://michael-brown.net/tags/meta/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 25 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="http://michael-brown.net/tags/meta/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Starting Over</title>
       <link>http://michael-brown.net/2016/starting-over/</link>
