@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="The future of The ReactiveSwift Composable Architecture"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@mluisbrown"/>
+
+
+
+  	<meta property="og:title" content="The future of The ReactiveSwift Composable Architecture &middot; Michael Brown" />
+  	<meta property="og:site_name" content="Michael Brown" />
+  	<meta property="og:url" content="http://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/" />
+
+    
+        
+            <meta property="og:image" content="/images/bridge2.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2021-12-01T00:00:00Z" />
+
+    
+    <meta property="article:tag" content="swift" />
+    
+    <meta property="article:tag" content="dev" />
+    
+    
+
+    <title>The future of The ReactiveSwift Composable Architecture &middot; Michael Brown</title>
+
+    
+    <meta name="description" content="Introduction The ReactiveSwift Composable Architecture is a fork of the Point-Free Composable Architecture. It uses ReactiveSwift as the basis for the Effect ty" />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://michael-brown.net/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="http://michael-brown.net/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://michael-brown.net/css/nav.css" />
+
+    
+
+    
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+      
+          <link href="http://michael-brown.net/index.xml" rel="alternate" type="application/rss+xml" title="Michael Brown" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.89.4" />
+
+    <link rel="canonical" href="http://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name":  null ,
+        "logo": "http://michael-brown.net/images/head.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name":  null ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://michael-brown.net/images/head.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url": "http://michael-brown.net",
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ]
+    },
+    "headline": "The future of The ReactiveSwift Composable Architecture",
+    "name": "The future of The ReactiveSwift Composable Architecture",
+    "wordCount":  669 ,
+    "timeRequired": "PT4M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "http://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/",
+    "datePublished": "2021-12-01T00:00Z",
+    "dateModified": "2021-12-01T00:00Z",
+    
+    "keywords": "swift, dev",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41132207-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/about/">About me</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/apps/">Apps</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="http://michael-brown.net/">Blog</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="http://michael-brown.net/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="http://michael-brown.net/"><img src="http://michael-brown.net/images/head.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">The future of The ReactiveSwift Composable Architecture</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2021-12-01T00:00:00Z">
+            Dec 1, 2021
+          </time>
+        
+         
+          <span class="post-tag small"><a href="http://michael-brown.net//tags/swift/">#swift</a></span>
+         
+          <span class="post-tag small"><a href="http://michael-brown.net//tags/dev/">#dev</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <h2 id="introduction">Introduction</h2>
+<p>The <a href="https://github.com/trading-point/reactiveswift-composable-architecture">ReactiveSwift Composable Architecture</a> is a fork of the <a href="https://github.com/pointfreeco">Point-Free</a> <a href="https://github.com/pointfreeco/swift-composable-architecture">Composable Architecture</a>. It uses <a href="https://github.com/ReactiveCocoa/ReactiveSwift">ReactiveSwift</a> as the basis for the <code>Effect</code> type instead of Apple&rsquo;s Combine framework.</p>
+<p>The reason why I created the fork, in May 2020, was because Combine is only available on iOS 13 and macOS 10.15 and later. At the time I was working on a brand new iOS app where I really wanted to use TCA but we couldn&rsquo;t yet set a minimum deployment target of iOS 13. I was sure there were others who also were in the same position: not being able to use TCA because of the iOS 13 requirement.</p>
+<p>Soon after the fork was released I got requests to make it compatible with Linux. There was someone wanting to use a Linux compatible version of TCA on an Android project using Swift with the <a href="https://github.com/readdle/swift-android-toolchain">Swift Android Toolchain</a>! It turns out that it wasn&rsquo;t that hard to make TCA work on Linux too (obviously without any of the UI components).</p>
+<h2 id="time-marches-on">Time marches on</h2>
+<p>For the past 18 months I have maintained the fork in sync with TCA: adopting all the new features and changes and keeping the release versions pretty much in sync. At the same time, the project I was working on, a brand new FX Trading app for <a href="https://www.trading-point.com">Trading Point</a>, was getting close to its first production release. iOS 15 had already been released and iOS 14 was a year old. We decided to up our minimum deployment target to iOS 13. It was also decided to migrate the code to use the original TCA and Combine, and no longer use the ReactiveSwift port.</p>
+<p>The migration from ReactiveSwift TCA to Combine TCA was surprisingly straight forward, and I know of other projects that have done the same thing. This actually shows how well designed TCA is, that it is sufficiently well abstracted from the underlying Functional Reactive Programming framework.</p>
+<p>Shortly afterwards, I also left Trading Point and have started a new role at <a href="https://www.argent.xyz">Argent</a>, where we are using Combine TCA in the iOS app.</p>
+<p><a href="https://github.com/mbrandonw">Brandon Williams</a> and <a href="https://github.com/stephencelis">Stephen Celis</a> continued developing TCA with new features and improvements. Some of these use libraries that they have developed, such as <a href="https://github.com/pointfreeco/swift-identified-collections">Swift Identified Collections</a> and <a href="https://github.com/pointfreeco/swift-custom-dump">Swift Custom Dump</a> which also require iOS 13 or macOS 10.15 as a minimum. This has made maintaining the fork increasingly difficult, as the differences are now not just the FRP library, but the fork also has to maintain older code that doesn&rsquo;t use these new libraries.</p>
+<p>Lastly, Swift 5.5 brought new concurrency features to Swift such as async/await, Actors, Tasks and AsyncSequence, and from Xcode 13.2 onwards, these features have <a href="https://forums.swift.org/t/swift-concurrency-back-deployment/51908/9">been backported to iOS 13 and macOS 10.15</a>. This raises the possibility that TCA itself might choose to migrate away from using Combine (a closed source Apple only framework), to using Swift concurrency features (which are open source and cross platform) for modelling the <code>Effect</code> type.</p>
+<h2 id="the-future">The future</h2>
+<p>I&rsquo;m unsure what the future of the ReactiveSwift fork of TCA is. There are several factors involved:</p>
+<ol>
+<li>It has become harder to maintain, particularly if compatibility with iOS 11 &amp; 12 is kept.</li>
+<li>It is no longer as relevant or necessary as it was.</li>
+<li>I&rsquo;m no longer working professionally on a project that is using it.</li>
+<li>There is the potential (just speculation on my part), that a switch to Swift Concurrency might happen.</li>
+</ol>
+<p>As a first step, I&rsquo;ve taken the decision that release <a href="https://github.com/trading-point/reactiveswift-composable-architecture/releases/tag/0.28.1">0.28.1</a> of the ReactiveSwift fork will be the last to support iOS versions below iOS 13 and macOS versions below macOS 10.15. From the next release on, the minimum targets will be iOS 13 and macOS 10.15. This will considerably reduce the maintenance burden.</p>
+<p>Over the next few weeks and months I will continue to evaluate whether it makes sense to maintain the fork at all.</p>
+<p>Lastly, I want to give a huge thank you to Trading Point / XM and all mobile team there. It was a pleasure working with you all ❤️ 🙏</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="http://michael-brown.net/" style="background-image: url(/images/head.png)"><span class="hidden">Michael Brown's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="http://michael-brown.net/">Michael Brown</a></h4>
+  
+  <p>Read <a href="http://michael-brown.net/">more posts</a> by this author.</p>
+  
+  <div class="author-meta">
+    
+    <span class="author-link icon-link"><a href="http://michael-brown.net">http://michael-brown.net</a></span>
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=The%20future%20of%20The%20ReactiveSwift%20Composable%20Architecture&nbsp;-&nbsp;Michael%20Brown&amp;url=http%3a%2f%2fmichael-brown.net%2f2021%2fthe-future-of-the-reactiveswift-composable-architecture%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fmichael-brown.net%2f2021%2fthe-future-of-the-reactiveswift-composable-architecture%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fmichael-brown.net%2f2021%2fthe-future-of-the-reactiveswift-composable-architecture%2f&amp;description=The%20future%20of%20The%20ReactiveSwift%20Composable%20Architecture"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+  
+      <a class="read-next-story prev" style="no-cover" href="http://michael-brown.net/2021/xcode-12-tabs/">
+          <section class="post">
+              <h2>Xcode 12 tabs</h2>
+          </section>
+      </a>
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Michael Brown</a> Copyright © 2016</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="http://michael-brown.net/js/index.js"></script>
+    
+</body>
+</html>
+

@@ -70,7 +70,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="generator" content="Hugo 0.89.4" />
 
     <link rel="canonical" href="http://michael-brown.net/2017/swift-and-kvo-context-variables/" />
 
@@ -232,7 +232,7 @@
     <section class="post-content">
       <p>I came across a crash in my app <a href="https://github.com/mluisbrown/Memories">Memories</a> when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as <code>AVFoundation</code> requires you to use it for a lot of things.</p>
 <p>When I ran the app in Xcode this was the exception that was causing the crash:</p>
-<pre><code>Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access.
+<pre tabindex="0"><code>Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access.
 Previous access (a modification) started at addObserver(_:forKeyPath:options:context:)
 Current access (a modification) started at observeValue(forKeyPath:of:change:context:)
 </code></pre><p>The hex address was the address of the property I was using as the context passed to <code>addObserver()</code> and which I was checking in <code>observeValue</code>. I was using just a regular instance variable for the context. I was also using the <code>.initial</code> option when adding the observer in order to observe the initial value, not just changes:</p>

@@ -70,7 +70,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="generator" content="Hugo 0.89.4" />
 
     <link rel="canonical" href="http://michael-brown.net/2018/touch-id-and-face-id-on-ios/" />
 
@@ -262,7 +262,7 @@
 <h2 id="restricting-keychain-item-access-to-touch-id-and-face-id">Restricting keychain item access to Touch ID and Face ID</h2>
 <p>When storing keys or tokens in the keychain, you can restrict them to be only accessible using Touch ID or Face ID by creating a <a href="https://developer.apple.com/documentation/security/secaccesscontrol"><code>SecAccessControl</code></a> with the <code>kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</code> protection and the <code>touchIDCurrentSet</code> or <code>touchIDAny</code> flag (<code>touchIDCurrentSet</code> restricts access to the currently registered Touch ID fingerprints or the currently registered Face ID face):</p>
 <p>NOTE: <code>touchIDCurrentSet</code> and <code>touchIDAny</code> have been deprecated in iOS 11.3 in favour of <code>biometryCurrentSet</code> and <code>biometryAny</code>.</p>
-<pre><code>// create an Access Control
+<pre tabindex="0"><code>// create an Access Control
 func createAccessControl() -&gt; SecAccessControl? {
     var accessControlError: Unmanaged&lt;CFError&gt;?
     guard let accessControl = SecAccessControlCreateWithFlags(
@@ -276,7 +276,7 @@ func createAccessControl() -&gt; SecAccessControl? {
     return accessControl
 }
 </code></pre><p>And then passing that access control as the value for the <code>kSecAttrAccessControl</code> key when calling <code>SecItemAdd</code>:</p>
-<pre><code>let query: [String: Any] = [
+<pre tabindex="0"><code>let query: [String: Any] = [
     kSecClass as String: kSecClassGenericPassword,
     kSecAttrService as String: &quot;my service name&quot;,
     kSecUseAuthenticationUI as String: kSecUseAuthenticationUIFail,
@@ -329,10 +329,10 @@ The <a href="https://github.com/agens-no/EllipticCurveKeyPair">EllipticCurveKeyP
 <h3 id="obtain-the-public-key">Obtain the public key</h3>
 <!-- raw HTML omitted -->
 <p>To get the <code>SecKey</code> reference from the <code>CFDictionary</code> of the public key above:</p>
-<pre><code>let converted = publicKey as! [String: Any]
+<pre tabindex="0"><code>let converted = publicKey as! [String: Any]
 let keyRef = converted[kSecValueRef as String] as! SecKey
 </code></pre><p>To get the actual key data from the public key:</p>
-<pre><code>let converted = publicKey as! [String: Any]
+<pre tabindex="0"><code>let converted = publicKey as! [String: Any]
 let data = converted[kSecValueData as String] as! Data
 </code></pre><p>If you&rsquo;re sending this key data to a server, you&rsquo;ll almost certainly want it in the DER or PEM formats that OpenSSL understands:</p>
 <!-- raw HTML omitted -->
