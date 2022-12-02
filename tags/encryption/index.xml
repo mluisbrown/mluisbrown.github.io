@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>encryption on Michael Brown</title>
-    <link>http://michael-brown.net/tags/encryption/</link>
+    <link>https://michael-brown.net/tags/encryption/</link>
     <description>Recent content in encryption on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Tue, 01 Mar 2016 00:00:00 +0000</lastBuildDate><atom:link href="http://michael-brown.net/tags/encryption/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Mar 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://michael-brown.net/tags/encryption/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Apple vs the FBI</title>
-      <link>http://michael-brown.net/2016/apple-vs-the-fbi/</link>
+      <link>https://michael-brown.net/2016/apple-vs-the-fbi/</link>
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/apple-vs-the-fbi/</guid>
+      <guid>https://michael-brown.net/2016/apple-vs-the-fbi/</guid>
       <description>The details of this case have been broken down and explained extremely well by Ben Thompson. The more technical details have also been very thoroughly covered by Jonathan Zdziarski on his blog.
 I am clearly on Apple&amp;rsquo;s side in this battle, and very much hope that they don&amp;rsquo;t lose. However, it&amp;rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&amp;rsquo;t be a total disaster.</description>
     </item>

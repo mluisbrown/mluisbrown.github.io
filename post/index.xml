@@ -2,46 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Michael Brown</title>
-    <link>http://michael-brown.net/post/</link>
+    <link>https://michael-brown.net/post/</link>
     <description>Recent content in Posts on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://michael-brown.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://michael-brown.net/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The future of The ReactiveSwift Composable Architecture</title>
-      <link>http://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/</link>
+      <link>https://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/</link>
       <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/</guid>
+      <guid>https://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/</guid>
       <description>Introduction The ReactiveSwift Composable Architecture is a fork of the Point-Free Composable Architecture. It uses ReactiveSwift as the basis for the Effect type instead of Apple&amp;rsquo;s Combine framework.
 The reason why I created the fork, in May 2020, was because Combine is only available on iOS 13 and macOS 10.15 and later. At the time I was working on a brand new iOS app where I really wanted to use TCA but we couldn&amp;rsquo;t yet set a minimum deployment target of iOS 13.</description>
     </item>
     
     <item>
       <title>Xcode 12 tabs</title>
-      <link>http://michael-brown.net/2021/xcode-12-tabs/</link>
+      <link>https://michael-brown.net/2021/xcode-12-tabs/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2021/xcode-12-tabs/</guid>
+      <guid>https://michael-brown.net/2021/xcode-12-tabs/</guid>
       <description>Up until Xcode 12 was released, Xcode tabs were a pretty terrible user experience, especially if you also regularly used an actually good code editor like Sublime Text or Visual Studio Code and knew what a good tabs UX was like. In Xcode tabs you could open the same file in 2 (or more) different tabs, for instance, which is close to useless. Xcode tabs worked pretty much like document tabs in any other application.</description>
     </item>
     
     <item>
       <title>Touch ID and Face ID on iOS</title>
-      <link>http://michael-brown.net/2018/touch-id-and-face-id-on-ios/</link>
+      <link>https://michael-brown.net/2018/touch-id-and-face-id-on-ios/</link>
       <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2018/touch-id-and-face-id-on-ios/</guid>
+      <guid>https://michael-brown.net/2018/touch-id-and-face-id-on-ios/</guid>
       <description>Introduction Adding support for Touch ID and Face ID to your app is not always completely straightforward, especially given that the documentation from Apple on the APIs is somewhat sparse and in some cases incorrect. I recently added Face ID and Touch ID support to my company&amp;rsquo;s app and I thought it would be helpful to document what I found.
 There is only a single class, LAContext in the LocalAuthentication framework, so it&amp;rsquo;s surprising how complex it can get.</description>
     </item>
     
     <item>
       <title>Swift and KVO context variables</title>
-      <link>http://michael-brown.net/2017/swift-and-kvo-context-variables/</link>
+      <link>https://michael-brown.net/2017/swift-and-kvo-context-variables/</link>
       <pubDate>Sat, 02 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2017/swift-and-kvo-context-variables/</guid>
+      <guid>https://michael-brown.net/2017/swift-and-kvo-context-variables/</guid>
       <description>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
 When I ran the app in Xcode this was the exception that was causing the crash:
 Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:) The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue.</description>
@@ -49,39 +49,39 @@ Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access
     
     <item>
       <title>Using PHLivePhotoView with Auto Layout</title>
-      <link>http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</link>
+      <link>https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</link>
       <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</guid>
+      <guid>https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</guid>
       <description>So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for PHLivePhotoView and thought that this would be fairly straightforward. For Live Photos, I&amp;rsquo;ll just use a PHLivePhotoView instead of a UIImageView.
 Well, as is usually the case when a developer says: &amp;ldquo;this looks straightforward, I&amp;rsquo;ll have it done in a couple of hours&amp;rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.</description>
     </item>
     
     <item>
       <title>Podcast sponsorship - an experiment</title>
-      <link>http://michael-brown.net/2016/podcast-sponsorship-an-experiment/</link>
+      <link>https://michael-brown.net/2016/podcast-sponsorship-an-experiment/</link>
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/podcast-sponsorship-an-experiment/</guid>
+      <guid>https://michael-brown.net/2016/podcast-sponsorship-an-experiment/</guid>
       <description>I&amp;rsquo;m an iOS developer in my spare time. You know, on evenings, and weekends. I recently launched an app called Memories. I created the app mainly because it was an app that I wanted to have. I thought that if I wanted to use an app like this (and I use it every day), then maybe other people would like an app like that too. The app replicates a feature found in cloud photo services like Everpix (RIP) and Picturelife that shows you all the photos you took on a certain date (usually today) in previous years.</description>
     </item>
     
     <item>
       <title>Comparing Dates, whilst ignoring the time</title>
-      <link>http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</link>
+      <link>https://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</link>
       <pubDate>Sun, 24 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</guid>
+      <guid>https://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</guid>
       <description>Comparing dates is one of the most common things you have to do as a developer of almost any type of software. At first glance it would seem to be something almost trivially easy. What could possibly go wrong? Well, turns out, quite a lot!
 I&amp;rsquo;m going to highlight just one issue that recently caused an embarassing bug in my app Memories. It involved just a simple date comparison, ignoring time, and without crossing timezones.</description>
     </item>
     
     <item>
       <title>Using stride to convert C-style for loops to Swift 2.2</title>
-      <link>http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</link>
+      <link>https://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</link>
       <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</guid>
+      <guid>https://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</guid>
       <description>With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become deprecated. The default Xcode fix-it for converting them uses a Range:
 let count = 5 for var index = 0; index &amp;lt; count; index++ { doSomething(index) } is converted do:
 let count = 5 for index in 0 ..&amp;lt; count { doSomething(index) } For the vast majority of C-style for loops this will work perfectly well. But there are cases where using a Range not only won&amp;rsquo;t work as expected but will actually crash!</description>
@@ -89,20 +89,20 @@ let count = 5 for index in 0 ..&amp;lt; count { doSomething(index) } For the vas
     
     <item>
       <title>Apple vs the FBI</title>
-      <link>http://michael-brown.net/2016/apple-vs-the-fbi/</link>
+      <link>https://michael-brown.net/2016/apple-vs-the-fbi/</link>
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/apple-vs-the-fbi/</guid>
+      <guid>https://michael-brown.net/2016/apple-vs-the-fbi/</guid>
       <description>The details of this case have been broken down and explained extremely well by Ben Thompson. The more technical details have also been very thoroughly covered by Jonathan Zdziarski on his blog.
 I am clearly on Apple&amp;rsquo;s side in this battle, and very much hope that they don&amp;rsquo;t lose. However, it&amp;rsquo;s worth pointing out that if they were to lose, that is, if they were compelled to provide a mechanism to facilitate brute force pass code cracking it wouldn&amp;rsquo;t be a total disaster.</description>
     </item>
     
     <item>
       <title>Starting Over</title>
-      <link>http://michael-brown.net/2016/starting-over/</link>
+      <link>https://michael-brown.net/2016/starting-over/</link>
       <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/starting-over/</guid>
+      <guid>https://michael-brown.net/2016/starting-over/</guid>
       <description>My old tumblr blog was a mess. I was doing a very bad impression of being an Apple blogger, interspersed with the odd post about iOS development. The posts were too long and too infrequent. It was actually starting to be an embarrassment.
 So I killed it. All the old posts are gone.
 I&amp;rsquo;m starting over, with a new blog using the Hugo static blogging engine and hosting everything on GitHub Pages.</description>

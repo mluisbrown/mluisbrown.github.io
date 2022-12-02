@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>blog on Michael Brown</title>
-    <link>http://michael-brown.net/tags/blog/</link>
+    <link>https://michael-brown.net/tags/blog/</link>
     <description>Recent content in blog on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Thu, 25 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="http://michael-brown.net/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://michael-brown.net/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Starting Over</title>
-      <link>http://michael-brown.net/2016/starting-over/</link>
+      <link>https://michael-brown.net/2016/starting-over/</link>
       <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/starting-over/</guid>
+      <guid>https://michael-brown.net/2016/starting-over/</guid>
       <description>My old tumblr blog was a mess. I was doing a very bad impression of being an Apple blogger, interspersed with the odd post about iOS development. The posts were too long and too infrequent. It was actually starting to be an embarrassment.
 So I killed it. All the old posts are gone.
 I&amp;rsquo;m starting over, with a new blog using the Hugo static blogging engine and hosting everything on GitHub Pages.</description>

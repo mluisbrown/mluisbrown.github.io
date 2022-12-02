@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>autolayout on Michael Brown</title>
-    <link>http://michael-brown.net/tags/autolayout/</link>
+    <link>https://michael-brown.net/tags/autolayout/</link>
     <description>Recent content in autolayout on Michael Brown</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Thu, 03 Nov 2016 00:00:00 +0000</lastBuildDate><atom:link href="http://michael-brown.net/tags/autolayout/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Nov 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://michael-brown.net/tags/autolayout/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using PHLivePhotoView with Auto Layout</title>
-      <link>http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</link>
+      <link>https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</link>
       <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</guid>
+      <guid>https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</guid>
       <description>So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for PHLivePhotoView and thought that this would be fairly straightforward. For Live Photos, I&amp;rsquo;ll just use a PHLivePhotoView instead of a UIImageView.
 Well, as is usually the case when a developer says: &amp;ldquo;this looks straightforward, I&amp;rsquo;ll have it done in a couple of hours&amp;rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.</description>
     </item>
