@@ -234,7 +234,7 @@
 <p>Adding support for Touch ID and Face ID to your app is not always completely straightforward, especially given that the documentation from Apple on the APIs is somewhat sparse and in some cases incorrect. I recently added Face ID and Touch ID support to my company&rsquo;s app and I thought it would be helpful to document what I found.</p>
 <p>There is only a single class, <a href="https://developer.apple.com/documentation/localauthentication/lacontext">LAContext</a> in the <a href="https://developer.apple.com/documentation/localauthentication/">LocalAuthentication</a> framework, so it&rsquo;s surprising how complex it can get.</p>
 <p>The most naive implementation of a biometric (Touch ID or Face ID) authentication request is as in Apple&rsquo;s example:</p>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/2979bb69e81d9ba4eba3f7c15abc9fa4.js"></script>
 <h2 id="what-is-actually-supported">What is actually supported?</h2>
 <p>However, that will almost certainly be insufficient for a production app. For a start, before you even get as far as attempting a local authentication, you will probably want to know which form (Touch ID or Face ID, or neither) is available, so that you can change your UI appropriately. Apple <a href="https://developer.apple.com/ios/human-interface-guidelines/user-interaction/authentication/">recommends</a> that you <em>&ldquo;Don&rsquo;t reference Touch ID on a device that supports Face ID [and] don&rsquo;t reference Face ID on a device that supports Touch ID&rdquo;</em>.</p>
 <p>You can use the <a href="https://developer.apple.com/documentation/localauthentication/lacontext/2867583-biometrytype"><code>biometryType</code></a> property of <code>LAContext</code> which will return an <code>LABiometryType</code> of either <code>none</code>, <code>faceID</code>, or <code>touchID</code>. Be aware that the <code>none</code> case was only added in iOS 11.2. Since you will already be doing <code>if #available</code> checks for iOS 10 (Touch ID only) and iOS 11, adding another check for iOS 11.2 just to see if you can use <code>none</code> is a real pain. I opted to just use <code>default</code> in my switch on the biometry type to handle <code>none</code>. In the documentation for <code>biometryType</code> there is an important error that Apple <a href="https://www.openradar.me/36064151">knows about</a> but has yet to fix. It states:</p>
@@ -243,10 +243,10 @@
 </blockquote>
 <p>That is incorrect. Once you call <code>canEvaluatePolicy</code> on a context, the <code>biometryType</code> <strong>is</strong> set, regardless if the call failed or succeeded. That&rsquo;s important to know, because if what the docs state were true, if the call fails it would be impossible to tell if it failed because the device doesn&rsquo;t support Touch ID or Face ID, or because they are disabled, not enrolled or locked out. You might have UI (eg in a settings pane) which references Touch ID or Face ID even if they are currently disabled, and you want to know <em>which</em> of them it should reference.</p>
 <p>I ended up creating my own abstraction to make it easier to track the full state of biometry support on the device and to limit all OS version checks to a single place:</p>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/70ef39d99f9801e3e532686f006053d2.js"></script>
 <p>I am using <code>notAvailable</code> to cover both the &ldquo;not available&rdquo; and &ldquo;not enrolled&rdquo; states that the API can return. Incidentally, if the <code>LAError.Code</code> returned from the API is <code>biometryNotAvailable</code> that includes the situation where Face ID has been disabled by the user for your app in Settings.app.</p>
 <p>I created a <code>BiometricAuth</code> class to deal with everything related to local authentication. Below is the implementation of the <code>supportedBiometry</code> calculated property which returns a <code>BiometrySupport</code> enum:</p>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/5503dd94fa71a60a55e33f3cf90b1dce.js"></script>
 <p>As you can see, between OS version checks and checking both success and error conditions, just getting all the information about the supported biometry on the device is quite a bit more complex than a single API call!</p>
 <h2 id="authenticating">Authenticating</h2>
 <p>Ok, so you know what&rsquo;s supported, now how do you actually authenticate? First, just so it&rsquo;s clear, you should only attempt biometric authentication if you know it&rsquo;s available. You don&rsquo;t need to call <code>evaluatePolicy</code> using the same <code>LAContext</code> on which <code>canEvaluatePolicy</code> was called (as in the Apple example), but you should call it fairly soon after to minimize that chance that circumstances have changed.</p>
@@ -321,13 +321,13 @@ SecItemAdd(query as CFDictionary, nil)
 The <a href="https://github.com/agens-no/EllipticCurveKeyPair">EllipticCurveKeyPair</a> repo is also very useful to look at, and is where I got the algorithm for converting a public key into DER and PEM formats.</p>
 <h2 id="code-for-secure-enclave-keys-signing-and-encryption">Code for Secure Enclave keys, signing and encryption</h2>
 <h3 id="create-a-key-pair-and-store-the-public-key">Create a key pair and store the public key</h3>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/3e0611e5ddd9ed7875c183ca7b716a6b.js"></script>
 <ul>
 <li><code>kSecAttrKeyTypeECSECPrimeRandom</code> is the Elliptic Curve key type used by the Secure Enclave. It is equivalent to the <code>prime256v1</code> key type in OpenSSL.</li>
 <li><code>kSecAttrTokenIDSecureEnclave</code> indicates the key is stored in the Secure Enclave.</li>
 </ul>
 <h3 id="obtain-the-public-key">Obtain the public key</h3>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/62ba0141e1e3e9f99182e7b85f2fd3bd.js"></script>
 <p>To get the <code>SecKey</code> reference from the <code>CFDictionary</code> of the public key above:</p>
 <pre tabindex="0"><code>let converted = publicKey as! [String: Any]
 let keyRef = converted[kSecValueRef as String] as! SecKey
@@ -335,16 +335,16 @@ let keyRef = converted[kSecValueRef as String] as! SecKey
 <pre tabindex="0"><code>let converted = publicKey as! [String: Any]
 let data = converted[kSecValueData as String] as! Data
 </code></pre><p>If you&rsquo;re sending this key data to a server, you&rsquo;ll almost certainly want it in the DER or PEM formats that OpenSSL understands:</p>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/f3cdb3d0e620679d155caba2d266c38e.js"></script>
 <h3 id="obtain-a-private-key-reference">Obtain a private key reference</h3>
 <p>You will need to provide an <code>LAContext</code> on which <code>evaluatePolicy</code> has succeeded. If you don&rsquo;t, one will be created for you and used. The <code>kSecUseOperationPrompt</code> is not used if you pass a context where you have already authenticated.</p>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/06063646c27a7ac5c4222d4a7dea940b.js"></script>
 <h3 id="sign-some-data">Sign some data</h3>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/7da7c905e1835b3da0ad5f868d98a5ae.js"></script>
 <h3 id="encrypt-some-data">Encrypt some data</h3>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/c489d31654194b3adccc655e998443af.js"></script>
 <h3 id="decrypt-some-data">Decrypt some data</h3>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/dacc6c96103baa640ad1fc01a3c53801.js"></script>
 <h2 id="conclusion">Conclusion</h2>
 <p>I hope I&rsquo;ve been able to shed some light on an area of iOS development that isn&rsquo;t particularly well documented, and that has a lot more nuances and edge cases than might appear at first sight.</p>
 

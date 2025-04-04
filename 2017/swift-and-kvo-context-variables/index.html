@@ -236,7 +236,7 @@
 Previous access (a modification) started at addObserver(_:forKeyPath:options:context:)
 Current access (a modification) started at observeValue(forKeyPath:of:change:context:)
 </code></pre><p>The hex address was the address of the property I was using as the context passed to <code>addObserver()</code> and which I was checking in <code>observeValue</code>. I was using just a regular instance variable for the context. I was also using the <code>.initial</code> option when adding the observer in order to observe the initial value, not just changes:</p>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/e90f078200d3c88925d94e09a0e0594d.js"></script>
 <p>When you use the <code>.initial</code> option <code>observeValue(forKeyPath:)</code> is called immediately as part of the call to <code>addObserver()</code>, in the same stack frame. This is what leads the Swift runtime to believe that &ldquo;Simultaneous access&rdquo; is occuring to the context variable. Even though no actual modification is occuring, the runtime probably has no way to determine that for Swift pointers bridged to <code>UnsafeMutableRawPointer</code> and so is playing it safe.</p>
 <p>I found the solution to the problem in this <a href="https://developer.apple.com/swift/blog/?id=6">Apple Swift Blog post</a> about interacting with C pointers from July 2014! So this has been a problem right since the start of Swift, but only now, perhaps with improved runtime checks in Swift 4, is it causing crashes.</p>
 <p>The relevant part is here (emphasis mine):</p>
@@ -245,7 +245,7 @@ Current access (a modification) started at observeValue(forKeyPath:of:change:con
 </blockquote>
 <p>The &ldquo;conversions&rdquo; referred to above are the bridging of <code>&amp;varName</code> to an <code>UnsafeMutableRawPointer</code>.</p>
 <p>So the solution is very simple. Either pull the context variable out of the class and make it a global variable (which can still be <code>private</code> so it&rsquo;s not visible outside of the file in which it&rsquo;s declared), or make it a <code>static</code> class variable:</p>
-<!-- raw HTML omitted -->
+<script src="https://gist.github.com/mluisbrown/3c91d8e07af52aebfca9e897fad99e6d.js"></script>
 <p>There are lots of bits of KVO sample code on Stack Overflow and elsewhere which don&rsquo;t follow this rule, so a lot of people are going to get burned with Swift 4, as the solution is not well documented, or easy to find.</p>
 <p>On the other hand, this problem only occurs if you use the <code>.initial</code> observing option and if you use a context variable, which you <a href="https://stackoverflow.com/a/11917449/368085">should</a>, although many people don&rsquo;t.</p>
 
