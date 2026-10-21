@@ -1,82 +1,68 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>swift on Michael Brown</title>
-    <link>https://michael-brown.net/tags/swift/</link>
-    <description>Recent content in swift on Michael Brown</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <copyright>Copyright © 2016</copyright>
-    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://michael-brown.net/tags/swift/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The future of The ReactiveSwift Composable Architecture</title>
-      <link>https://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/</link>
-      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/</guid>
-      <description>Introduction The ReactiveSwift Composable Architecture is a fork of the Point-Free Composable Architecture. It uses ReactiveSwift as the basis for the Effect type instead of Apple&amp;rsquo;s Combine framework.
-The reason why I created the fork, in May 2020, was because Combine is only available on iOS 13 and macOS 10.15 and later. At the time I was working on a brand new iOS app where I really wanted to use TCA but we couldn&amp;rsquo;t yet set a minimum deployment target of iOS 13.</description>
-    </item>
-    
-    <item>
-      <title>Xcode 12 tabs</title>
-      <link>https://michael-brown.net/2021/xcode-12-tabs/</link>
-      <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://michael-brown.net/2021/xcode-12-tabs/</guid>
-      <description>Up until Xcode 12 was released, Xcode tabs were a pretty terrible user experience, especially if you also regularly used an actually good code editor like Sublime Text or Visual Studio Code and knew what a good tabs UX was like. In Xcode tabs you could open the same file in 2 (or more) different tabs, for instance, which is close to useless. Xcode tabs worked pretty much like document tabs in any other application.</description>
-    </item>
-    
-    <item>
-      <title>Touch ID and Face ID on iOS</title>
-      <link>https://michael-brown.net/2018/touch-id-and-face-id-on-ios/</link>
-      <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://michael-brown.net/2018/touch-id-and-face-id-on-ios/</guid>
-      <description>Introduction Adding support for Touch ID and Face ID to your app is not always completely straightforward, especially given that the documentation from Apple on the APIs is somewhat sparse and in some cases incorrect. I recently added Face ID and Touch ID support to my company&amp;rsquo;s app and I thought it would be helpful to document what I found.
-There is only a single class, LAContext in the LocalAuthentication framework, so it&amp;rsquo;s surprising how complex it can get.</description>
-    </item>
-    
-    <item>
-      <title>Swift and KVO context variables</title>
-      <link>https://michael-brown.net/2017/swift-and-kvo-context-variables/</link>
-      <pubDate>Sat, 02 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://michael-brown.net/2017/swift-and-kvo-context-variables/</guid>
-      <description>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
-When I ran the app in Xcode this was the exception that was causing the crash:
-Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:) The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue.</description>
-    </item>
-    
-    <item>
-      <title>Using PHLivePhotoView with Auto Layout</title>
-      <link>https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</link>
-      <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</guid>
-      <description>So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for PHLivePhotoView and thought that this would be fairly straightforward. For Live Photos, I&amp;rsquo;ll just use a PHLivePhotoView instead of a UIImageView.
-Well, as is usually the case when a developer says: &amp;ldquo;this looks straightforward, I&amp;rsquo;ll have it done in a couple of hours&amp;rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.</description>
-    </item>
-    
-    <item>
-      <title>Comparing Dates, whilst ignoring the time</title>
-      <link>https://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</link>
-      <pubDate>Sun, 24 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</guid>
-      <description>Comparing dates is one of the most common things you have to do as a developer of almost any type of software. At first glance it would seem to be something almost trivially easy. What could possibly go wrong? Well, turns out, quite a lot!
-I&amp;rsquo;m going to highlight just one issue that recently caused an embarassing bug in my app Memories. It involved just a simple date comparison, ignoring time, and without crossing timezones.</description>
-    </item>
-    
-    <item>
-      <title>Using stride to convert C-style for loops to Swift 2.2</title>
-      <link>https://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</link>
-      <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</guid>
-      <description>With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become deprecated. The default Xcode fix-it for converting them uses a Range:
-let count = 5 for var index = 0; index &amp;lt; count; index++ { doSomething(index) } is converted do:
-let count = 5 for index in 0 ..&amp;lt; count { doSomething(index) } For the vast majority of C-style for loops this will work perfectly well. But there are cases where using a Range not only won&amp;rsquo;t work as expected but will actually crash!</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Swift on Michael Brown</title>
+		<link>https://michael-brown.net/tags/swift/</link>
+		<description>Recent content in Swift on Michael Brown</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+			<copyright>Copyright © 2016</copyright>
+		
+		
+			<lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://michael-brown.net/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>The future of The ReactiveSwift Composable Architecture</title>
+				<link>https://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/</link>
+				<pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+				<guid>https://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/</guid>
+				<description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;a href=&#34;https://github.com/trading-point/reactiveswift-composable-architecture&#34;&gt;ReactiveSwift Composable Architecture&lt;/a&gt; is a fork of the &lt;a href=&#34;https://github.com/pointfreeco&#34;&gt;Point-Free&lt;/a&gt; &lt;a href=&#34;https://github.com/pointfreeco/swift-composable-architecture&#34;&gt;Composable Architecture&lt;/a&gt;. It uses &lt;a href=&#34;https://github.com/ReactiveCocoa/ReactiveSwift&#34;&gt;ReactiveSwift&lt;/a&gt; as the basis for the &lt;code&gt;Effect&lt;/code&gt; type instead of Apple&amp;rsquo;s Combine framework.&lt;/p&gt;&#xA;&lt;p&gt;The reason why I created the fork, in May 2020, was because Combine is only available on iOS 13 and macOS 10.15 and later. At the time I was working on a brand new iOS app where I really wanted to use TCA but we couldn&amp;rsquo;t yet set a minimum deployment target of iOS 13. I was sure there were others who also were in the same position: not being able to use TCA because of the iOS 13 requirement.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Xcode 12 tabs</title>
+				<link>https://michael-brown.net/2021/xcode-12-tabs/</link>
+				<pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
+				<guid>https://michael-brown.net/2021/xcode-12-tabs/</guid>
+				<description>&lt;p&gt;Up until Xcode 12 was released, Xcode tabs were a pretty terrible user experience, especially if you also regularly used an actually good code editor like Sublime Text or Visual Studio Code and knew what a good tabs UX was like. In Xcode tabs you could open the same file in 2 (or more) different tabs, for instance, which is close to useless. Xcode tabs worked pretty much like document tabs in any other application. Unfortunately, this style of tabs is not great for editing code where you are constantly switching between many different files.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Touch ID and Face ID on iOS</title>
+				<link>https://michael-brown.net/2018/touch-id-and-face-id-on-ios/</link>
+				<pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
+				<guid>https://michael-brown.net/2018/touch-id-and-face-id-on-ios/</guid>
+				<description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Adding support for Touch ID and Face ID to your app is not always completely straightforward, especially given that the documentation from Apple on the APIs is somewhat sparse and in some cases incorrect. I recently added Face ID and Touch ID support to my company&amp;rsquo;s app and I thought it would be helpful to document what I found.&lt;/p&gt;&#xA;&lt;p&gt;There is only a single class, &lt;a href=&#34;https://developer.apple.com/documentation/localauthentication/lacontext&#34;&gt;LAContext&lt;/a&gt; in the &lt;a href=&#34;https://developer.apple.com/documentation/localauthentication/&#34;&gt;LocalAuthentication&lt;/a&gt; framework, so it&amp;rsquo;s surprising how complex it can get.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Swift and KVO context variables</title>
+				<link>https://michael-brown.net/2017/swift-and-kvo-context-variables/</link>
+				<pubDate>Sat, 02 Sep 2017 00:00:00 +0000</pubDate>
+				<guid>https://michael-brown.net/2017/swift-and-kvo-context-variables/</guid>
+				<description>&lt;p&gt;I came across a crash in my app &lt;a href=&#34;https://github.com/mluisbrown/Memories&#34;&gt;Memories&lt;/a&gt; when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as &lt;code&gt;AVFoundation&lt;/code&gt; requires you to use it for a lot of things.&lt;/p&gt;&#xA;&lt;p&gt;When I ran the app in Xcode this was the exception that was causing the crash:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access.&#xA;Previous access (a modification) started at addObserver(_:forKeyPath:options:context:)&#xA;Current access (a modification) started at observeValue(forKeyPath:of:change:context:)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The hex address was the address of the property I was using as the context passed to &lt;code&gt;addObserver()&lt;/code&gt; and which I was checking in &lt;code&gt;observeValue&lt;/code&gt;. I was using just a regular instance variable for the context. I was also using the &lt;code&gt;.initial&lt;/code&gt; option when adding the observer in order to observe the initial value, not just changes:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Using PHLivePhotoView with Auto Layout</title>
+				<link>https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</link>
+				<pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
+				<guid>https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/</guid>
+				<description>&lt;p&gt;So, I was working on updating my app &lt;a href=&#34;https://michael-brown.net/memories/&#34;&gt;Memories&lt;/a&gt; to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for &lt;a href=&#34;https://developer.apple.com/reference/photosui/phlivephotoview&#34;&gt;&lt;code&gt;PHLivePhotoView&lt;/code&gt;&lt;/a&gt; and thought that this would be fairly straightforward. For Live Photos, I&amp;rsquo;ll just use a &lt;code&gt;PHLivePhotoView&lt;/code&gt; instead of a &lt;code&gt;UIImageView&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Well, as is usually the case when a developer says: &amp;ldquo;this looks straightforward, I&amp;rsquo;ll have it done in a couple of hours&amp;rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Comparing Dates, whilst ignoring the time</title>
+				<link>https://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</link>
+				<pubDate>Sun, 24 Apr 2016 00:00:00 +0000</pubDate>
+				<guid>https://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/</guid>
+				<description>&lt;p&gt;Comparing dates is one of the most common things you have to do as a developer of almost any type of software. At first glance it would seem to be something almost trivially easy. What could possibly go wrong? Well, turns out, quite a lot!&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m going to highlight just one issue that recently caused an embarassing bug in my app &lt;a href=&#34;https://michael-brown.net/memories/&#34;&gt;Memories&lt;/a&gt;. It involved just a simple date comparison, ignoring time, and without crossing timezones.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Using stride to convert C-style for loops to Swift 2.2</title>
+				<link>https://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</link>
+				<pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
+				<guid>https://michael-brown.net/2016/using-stride-to-convert-c-style-for-loops-to-swift-2.2/</guid>
+				<description>&lt;p&gt;With the release of Swift 2.2 in Xcode 7.3 C-style for loops have become &lt;a href=&#34;https://github.com/apple/swift-evolution/blob/master/proposals/0007-remove-c-style-for-loops.md&#34;&gt;deprecated&lt;/a&gt;. The default Xcode fix-it for converting them uses a Range:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; count = &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; index = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; index &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; count; index&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    doSomething(index)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;is converted do:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; count = &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; index &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; ..&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; count {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    doSomething(index)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For the vast majority of C-style for loops this will work perfectly well. But there are cases where using a Range not only won&amp;rsquo;t work as expected but will actually crash!&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

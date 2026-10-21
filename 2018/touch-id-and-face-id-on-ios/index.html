@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
 
     <meta charset="utf-8" />
@@ -72,7 +72,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.89.4" />
+    <meta name="generator" content="Hugo 0.168.0">
 
     <link rel="canonical" href="https://michael-brown.net/2018/touch-id-and-face-id-on-ios/" />
 
@@ -271,7 +271,7 @@ func createAccessControl() -&gt; SecAccessControl? {
         kCFAllocatorDefault,
         kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
         [.touchIDCurrentSet], &amp;accessControlError) else {
-        // couldn't create accessControl
+        // couldn&#39;t create accessControl
         return nil
     }
 
@@ -280,9 +280,9 @@ func createAccessControl() -&gt; SecAccessControl? {
 </code></pre><p>And then passing that access control as the value for the <code>kSecAttrAccessControl</code> key when calling <code>SecItemAdd</code>:</p>
 <pre tabindex="0"><code>let query: [String: Any] = [
     kSecClass as String: kSecClassGenericPassword,
-    kSecAttrService as String: &quot;my service name&quot;,
+    kSecAttrService as String: &#34;my service name&#34;,
     kSecUseAuthenticationUI as String: kSecUseAuthenticationUIFail,
-    kSecValueData as String: &quot;my secret data&quot;,
+    kSecValueData as String: &#34;my secret data&#34;,
     kSecAttrAccessControl as String: accessControl,
     ]
 

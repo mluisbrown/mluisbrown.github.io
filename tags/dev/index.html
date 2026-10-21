@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
 
     <meta charset="utf-8" />
@@ -13,13 +13,13 @@
 
 
 
-<meta name="twitter:title" content="dev"/>
+<meta name="twitter:title" content="Dev"/>
 <meta name="twitter:description" content="the only way to do great work is to love what you do"/>
 <meta name="twitter:site" content="@mluisbrown"/>
 
 
 
-  	<meta property="og:title" content="dev &middot; Michael Brown" />
+  	<meta property="og:title" content="Dev &middot; Michael Brown" />
   	<meta property="og:site_name" content="Michael Brown" />
   	<meta property="og:url" content="https://michael-brown.net/tags/dev/" />
 
@@ -34,7 +34,7 @@
     <meta property="og:description" content="the only way to do great work is to love what you do" />
     
 
-    <title>dev &middot; Michael Brown</title>
+    <title>Dev &middot; Michael Brown</title>
 
     
     <meta name="description" content="the only way to do great work is to love what you do" />
@@ -65,10 +65,10 @@
           <link href="https://michael-brown.net/index.xml" rel="alternate" type="application/rss+xml" title="Michael Brown" />
       
       
-        <link href="https://michael-brown.net/tags/dev/index.xml" rel="alternate" type="application/rss+xml" title="dev &middot; Michael Brown" />
+        <link href="https://michael-brown.net/tags/dev/index.xml" rel="alternate" type="application/rss+xml" title="Dev &middot; Michael Brown" />
       
     
-    <meta name="generator" content="Hugo 0.89.4" />
+    <meta name="generator" content="Hugo 0.168.0">
 
     <link rel="canonical" href="https://michael-brown.net/tags/dev/" />
 
@@ -185,7 +185,7 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">dev</h1>
+            <h1 class="page-title">Dev</h1>
             <h2 class="page-description">
                 
             </h2>
@@ -215,7 +215,8 @@
     <section class="post-excerpt">
         
             <p>Introduction The ReactiveSwift Composable Architecture is a fork of the Point-Free Composable Architecture. It uses ReactiveSwift as the basis for the Effect type instead of Apple&rsquo;s Combine framework.
-The reason why I created the fork, in May 2020, was because Combine is only available on iOS 13 and macOS 10.15 and later. At the time I was working on a brand new iOS app where I really wanted to use TCA but we couldn&rsquo;t yet set a minimum deployment target of iOS 13. <a class="read-more" href="https://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/">&raquo;</a></p>
+The reason why I created the fork, in May 2020, was because Combine is only available on iOS 13 and macOS 10.15 and later. At the time I was working on a brand new iOS app where I really wanted to use TCA but we couldn&rsquo;t yet set a minimum deployment target of iOS 13. I was sure there were others who also were in the same position: not being able to use TCA because of the iOS 13 requirement.
+ <a class="read-more" href="https://michael-brown.net/2021/the-future-of-the-reactiveswift-composable-architecture/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">
@@ -254,7 +255,8 @@ The reason why I created the fork, in May 2020, was because Combine is only avai
     </header>
     <section class="post-excerpt">
         
-            <p>Up until Xcode 12 was released, Xcode tabs were a pretty terrible user experience, especially if you also regularly used an actually good code editor like Sublime Text or Visual Studio Code and knew what a good tabs UX was like. In Xcode tabs you could open the same file in 2 (or more) different tabs, for instance, which is close to useless. Xcode tabs worked pretty much like document tabs in any other application. <a class="read-more" href="https://michael-brown.net/2021/xcode-12-tabs/">&raquo;</a></p>
+            <p>Up until Xcode 12 was released, Xcode tabs were a pretty terrible user experience, especially if you also regularly used an actually good code editor like Sublime Text or Visual Studio Code and knew what a good tabs UX was like. In Xcode tabs you could open the same file in 2 (or more) different tabs, for instance, which is close to useless. Xcode tabs worked pretty much like document tabs in any other application. Unfortunately, this style of tabs is not great for editing code where you are constantly switching between many different files.
+ <a class="read-more" href="https://michael-brown.net/2021/xcode-12-tabs/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">
@@ -294,7 +296,8 @@ The reason why I created the fork, in May 2020, was because Combine is only avai
     <section class="post-excerpt">
         
             <p>Introduction Adding support for Touch ID and Face ID to your app is not always completely straightforward, especially given that the documentation from Apple on the APIs is somewhat sparse and in some cases incorrect. I recently added Face ID and Touch ID support to my company&rsquo;s app and I thought it would be helpful to document what I found.
-There is only a single class, LAContext in the LocalAuthentication framework, so it&rsquo;s surprising how complex it can get. <a class="read-more" href="https://michael-brown.net/2018/touch-id-and-face-id-on-ios/">&raquo;</a></p>
+There is only a single class, LAContext in the LocalAuthentication framework, so it&rsquo;s surprising how complex it can get.
+ <a class="read-more" href="https://michael-brown.net/2018/touch-id-and-face-id-on-ios/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">
@@ -335,7 +338,8 @@ There is only a single class, LAContext in the LocalAuthentication framework, so
         
             <p>I came across a crash in my app Memories when using the iOS 11 betas. It happened reliably every time I loaded a video, and the video code uses KVO, as AVFoundation requires you to use it for a lot of things.
 When I ran the app in Xcode this was the exception that was causing the crash:
-Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:) The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue. <a class="read-more" href="https://michael-brown.net/2017/swift-and-kvo-context-variables/">&raquo;</a></p>
+Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access. Previous access (a modification) started at addObserver(_:forKeyPath:options:context:) Current access (a modification) started at observeValue(forKeyPath:of:change:context:) The hex address was the address of the property I was using as the context passed to addObserver() and which I was checking in observeValue. I was using just a regular instance variable for the context. I was also using the .initial option when adding the observer in order to observe the initial value, not just changes:
+ <a class="read-more" href="https://michael-brown.net/2017/swift-and-kvo-context-variables/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">
@@ -375,7 +379,8 @@ Simultaneous accesses to 0x1c41ded68, but modification requires exclusive access
     <section class="post-excerpt">
         
             <p>So, I was working on updating my app Memories to support displaying Live Photos properly and not just as a static image. I took a look at the documentation for PHLivePhotoView and thought that this would be fairly straightforward. For Live Photos, I&rsquo;ll just use a PHLivePhotoView instead of a UIImageView.
-Well, as is usually the case when a developer says: &ldquo;this looks straightforward, I&rsquo;ll have it done in a couple of hours&rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong. <a class="read-more" href="https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/">&raquo;</a></p>
+Well, as is usually the case when a developer says: &ldquo;this looks straightforward, I&rsquo;ll have it done in a couple of hours&rdquo;, it was not quite so straightforward and had me scratching my head and cursing until 2am until I finally realised what I was doing wrong.
+ <a class="read-more" href="https://michael-brown.net/2016/using-phlivephotoview-with-auto-layout/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
 
     <meta charset="utf-8" />
@@ -72,7 +72,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.89.4" />
+    <meta name="generator" content="Hugo 0.168.0">
 
     <link rel="canonical" href="https://michael-brown.net/2016/comparing-dates-whilst-ignoring-the-time/" />
 
@@ -248,14 +248,14 @@
 </ul>
 <p>You see? <code>todayMidnight</code> is actually represented as the day <em>before</em> at 23:00, not today at midnight! The reason for this is that <code>NSDate</code> internally stores dates in <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a>, which is the same as GMT for most purposes. When DST is in effect, the time where I live is one hour ahead of GMT, so today at midnight, in GMT terms, is actually yesterday at 23:00.</p>
 <p>The solution I found for comparing dates where you don&rsquo;t care about the time component is to set the time component to midday (12:00) instead of midnight (00:00). That way, it would take a 12 hour offset due to DST or timezone changes to change the date in UTC terms.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p>Well, since I&rsquo;m using the Gregorian calendar, it would be a Gregorian Day Number, which is called a <a href="https://en.wikipedia.org/wiki/Rata_Die">Rata Die</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
     </section>
 
